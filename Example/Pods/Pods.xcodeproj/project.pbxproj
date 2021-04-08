@@ -16,7 +16,7 @@
 		7480268AF4BDD44A5B4CD805C102FFAB /* Pods-SimpleAnimatedTabBar_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AB0CF8FF6BD61D2B799940E070766ED0 /* Pods-SimpleAnimatedTabBar_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8C660717BCB0FA5BF2CC33C3DF15E900 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		98236FF38D8A69DB1524E73F2703A847 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		CBFFB9E8EAE2FF7E4FC093676AA187FE /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = B317FA97FD67DFFB2C1564F72945162A /* ReplaceMe.swift */; };
+		9D26A135261FC53800DB58F6 /* SimpleAnimatedTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D26A134261FC53800DB58F6 /* SimpleAnimatedTabBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +41,7 @@
 		127D60A05692D375BAA9D85DB5C64A1F /* Pods-SimpleAnimatedTabBar_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SimpleAnimatedTabBar_Example-dummy.m"; sourceTree = "<group>"; };
 		1D9E129FB67889935C1193FC2574CF64 /* Pods-SimpleAnimatedTabBar_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SimpleAnimatedTabBar_Example-Info.plist"; sourceTree = "<group>"; };
 		2DC77577D1A236B00C2F4F9219C51AF6 /* Pods-SimpleAnimatedTabBar_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SimpleAnimatedTabBar_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		34AE623870C5C5A0B15B69B84AB57FAA /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		34AE623870C5C5A0B15B69B84AB57FAA /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		3C35C46EAB3EAE9F9DD042CA3B92EAF0 /* Pods-SimpleAnimatedTabBar_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SimpleAnimatedTabBar_Tests-dummy.m"; sourceTree = "<group>"; };
 		4055A8F68129BD1B4D0FD90EA5CF63F9 /* SimpleAnimatedTabBar-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SimpleAnimatedTabBar-Info.plist"; sourceTree = "<group>"; };
 		4DFA69F91394A0E869D3686EEE50F6C1 /* SimpleAnimatedTabBar-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SimpleAnimatedTabBar-umbrella.h"; sourceTree = "<group>"; };
@@ -54,21 +54,21 @@
 		776EAEA8054815635D7A43A3FD6DE9B3 /* SimpleAnimatedTabBar-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SimpleAnimatedTabBar-dummy.m"; sourceTree = "<group>"; };
 		7DE85028FE4CCB79D9EFD1FAD19879B5 /* Pods-SimpleAnimatedTabBar_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SimpleAnimatedTabBar_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		8021159AF4BC9BF6D766D18F287FAC6A /* SimpleAnimatedTabBar.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SimpleAnimatedTabBar.modulemap; sourceTree = "<group>"; };
-		8BCE471A47C414F29B12F0B81729A073 /* SimpleAnimatedTabBar.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = SimpleAnimatedTabBar.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		8BCE471A47C414F29B12F0B81729A073 /* SimpleAnimatedTabBar.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = SimpleAnimatedTabBar.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D26A134261FC53800DB58F6 /* SimpleAnimatedTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SimpleAnimatedTabBar.swift; path = SimpleAnimatedTabBar/Classes/SimpleAnimatedTabBar.swift; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		AAF5AD988DCBE112268B6F1A9EA5EFDA /* Pods-SimpleAnimatedTabBar_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SimpleAnimatedTabBar_Example.modulemap"; sourceTree = "<group>"; };
 		AB0CF8FF6BD61D2B799940E070766ED0 /* Pods-SimpleAnimatedTabBar_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SimpleAnimatedTabBar_Example-umbrella.h"; sourceTree = "<group>"; };
 		AD3CB22450139021F42BD4913F653880 /* Pods-SimpleAnimatedTabBar_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SimpleAnimatedTabBar_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		B317FA97FD67DFFB2C1564F72945162A /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaceMe.swift; path = SimpleAnimatedTabBar/Classes/ReplaceMe.swift; sourceTree = "<group>"; };
 		B36FA3F0D2E98CE229D3190B0CE4998B /* Pods-SimpleAnimatedTabBar_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SimpleAnimatedTabBar_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		BB5A42463F1C5D5933469E4473F41B97 /* Pods-SimpleAnimatedTabBar_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SimpleAnimatedTabBar_Tests-umbrella.h"; sourceTree = "<group>"; };
-		BFD1576A316A67A77625C66F5DA15788 /* SimpleAnimatedTabBar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SimpleAnimatedTabBar.framework; path = SimpleAnimatedTabBar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFD1576A316A67A77625C66F5DA15788 /* SimpleAnimatedTabBar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SimpleAnimatedTabBar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CABAF278E3D37C9529AE314AA0FDB1AD /* SimpleAnimatedTabBar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SimpleAnimatedTabBar.release.xcconfig; sourceTree = "<group>"; };
 		CE3F9E4BA501DBDF61B0AA1C013A29F8 /* SimpleAnimatedTabBar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SimpleAnimatedTabBar.debug.xcconfig; sourceTree = "<group>"; };
 		DA34816BCBEFC63D08247CAE3CEDDF7C /* Pods-SimpleAnimatedTabBar_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SimpleAnimatedTabBar_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		E03FA836FE2EB3A339C51F33BF42D1AB /* Pods_SimpleAnimatedTabBar_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SimpleAnimatedTabBar_Example.framework; path = "Pods-SimpleAnimatedTabBar_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E77FF460DEA567B507C9168C84526A6A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
-		EA1D80021DDB55359629DFC7E34E5959 /* Pods_SimpleAnimatedTabBar_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SimpleAnimatedTabBar_Tests.framework; path = "Pods-SimpleAnimatedTabBar_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E03FA836FE2EB3A339C51F33BF42D1AB /* Pods_SimpleAnimatedTabBar_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleAnimatedTabBar_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E77FF460DEA567B507C9168C84526A6A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		EA1D80021DDB55359629DFC7E34E5959 /* Pods_SimpleAnimatedTabBar_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleAnimatedTabBar_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F28C4B75DFE33E532088D98F9F8C739F /* Pods-SimpleAnimatedTabBar_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SimpleAnimatedTabBar_Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -205,7 +205,7 @@
 		D552115BAC176B9257CDB80185311F15 /* SimpleAnimatedTabBar */ = {
 			isa = PBXGroup;
 			children = (
-				B317FA97FD67DFFB2C1564F72945162A /* ReplaceMe.swift */,
+				9D26A134261FC53800DB58F6 /* SimpleAnimatedTabBar.swift */,
 				F161ECAE6F1EEF8C6EFEAF8F98CE2AD3 /* Pod */,
 				3AB9CC3E3AC1EECB6BDFA7EA520571F0 /* Support Files */,
 			);
@@ -316,7 +316,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastUpgradeCheck = 1240;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -375,7 +375,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CBFFB9E8EAE2FF7E4FC093676AA187FE /* ReplaceMe.swift in Sources */,
+				9D26A135261FC53800DB58F6 /* SimpleAnimatedTabBar.swift in Sources */,
 				1CE1671371BCCE19B7B452330C0D9B22 /* SimpleAnimatedTabBar-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -410,7 +410,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CABAF278E3D37C9529AE314AA0FDB1AD /* SimpleAnimatedTabBar.release.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -510,7 +509,6 @@
 			baseConfigurationReference = DA34816BCBEFC63D08247CAE3CEDDF7C /* Pods-SimpleAnimatedTabBar_Tests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -594,8 +592,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
@@ -605,7 +602,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CE3F9E4BA501DBDF61B0AA1C013A29F8 /* SimpleAnimatedTabBar.debug.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -638,7 +634,6 @@
 			baseConfigurationReference = 2DC77577D1A236B00C2F4F9219C51AF6 /* Pods-SimpleAnimatedTabBar_Example.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -672,7 +667,6 @@
 			baseConfigurationReference = B36FA3F0D2E98CE229D3190B0CE4998B /* Pods-SimpleAnimatedTabBar_Tests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -707,7 +701,6 @@
 			baseConfigurationReference = F28C4B75DFE33E532088D98F9F8C739F /* Pods-SimpleAnimatedTabBar_Example.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
