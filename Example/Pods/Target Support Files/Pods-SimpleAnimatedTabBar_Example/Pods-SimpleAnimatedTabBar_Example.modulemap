@@ -1,0 +1,6 @@
+framework module Pods_SimpleAnimatedTabBar_Example {
+  umbrella header "Pods-SimpleAnimatedTabBar_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,16 @@
+PODS:
+  - SimpleAnimatedTabBar (0.1.0)
+
+DEPENDENCIES:
+  - SimpleAnimatedTabBar (from `../`)
+
+EXTERNAL SOURCES:
+  SimpleAnimatedTabBar:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  SimpleAnimatedTabBar: c59226a122ab702db1a75edf7b9a7f012bf6ac10
+
+PODFILE CHECKSUM: 0faef5be82d34461c47133c609aecf418ef38a58
+
+COCOAPODS: 1.10.1
