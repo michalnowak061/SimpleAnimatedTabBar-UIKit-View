@@ -17,6 +17,7 @@
 		8C660717BCB0FA5BF2CC33C3DF15E900 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		98236FF38D8A69DB1524E73F2703A847 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		9D26A135261FC53800DB58F6 /* SimpleAnimatedTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D26A134261FC53800DB58F6 /* SimpleAnimatedTabBar.swift */; };
+		9D26A142261FC91600DB58F6 /* InstanceCountable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D26A141261FC91600DB58F6 /* InstanceCountable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		8021159AF4BC9BF6D766D18F287FAC6A /* SimpleAnimatedTabBar.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SimpleAnimatedTabBar.modulemap; sourceTree = "<group>"; };
 		8BCE471A47C414F29B12F0B81729A073 /* SimpleAnimatedTabBar.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = SimpleAnimatedTabBar.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9D26A134261FC53800DB58F6 /* SimpleAnimatedTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SimpleAnimatedTabBar.swift; path = SimpleAnimatedTabBar/Classes/SimpleAnimatedTabBar.swift; sourceTree = "<group>"; };
+		9D26A141261FC91600DB58F6 /* InstanceCountable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InstanceCountable.swift; path = SimpleAnimatedTabBar/Classes/InstanceCountable.swift; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		AAF5AD988DCBE112268B6F1A9EA5EFDA /* Pods-SimpleAnimatedTabBar_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SimpleAnimatedTabBar_Example.modulemap"; sourceTree = "<group>"; };
 		AB0CF8FF6BD61D2B799940E070766ED0 /* Pods-SimpleAnimatedTabBar_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SimpleAnimatedTabBar_Example-umbrella.h"; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				9D26A134261FC53800DB58F6 /* SimpleAnimatedTabBar.swift */,
+				9D26A141261FC91600DB58F6 /* InstanceCountable.swift */,
 				F161ECAE6F1EEF8C6EFEAF8F98CE2AD3 /* Pod */,
 				3AB9CC3E3AC1EECB6BDFA7EA520571F0 /* Support Files */,
 			);
@@ -376,6 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D26A135261FC53800DB58F6 /* SimpleAnimatedTabBar.swift in Sources */,
+				9D26A142261FC91600DB58F6 /* InstanceCountable.swift in Sources */,
 				1CE1671371BCCE19B7B452330C0D9B22 /* SimpleAnimatedTabBar-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

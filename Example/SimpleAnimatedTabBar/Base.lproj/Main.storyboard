@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -10,35 +10,82 @@
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="SimpleAnimatedTabBar_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="SimpleAnimatedTabBar_Example" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jYT-L8-6Zd" customClass="SimpleAnimatedTabBar" customModule="SimpleAnimatedTabBar">
-                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                            <tabBar contentMode="scaleToFill" itemPositioning="fill" translatesAutoresizingMaskIntoConstraints="NO" id="4CA-i5-hKo" customClass="SimpleAnimatedTabBar" customModule="SimpleAnimatedTabBar">
+                                <rect key="frame" x="0.0" y="812" width="414" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="4CA-i5-hKo" secondAttribute="height" multiplier="414:50" id="igL-zg-xRF"/>
+                                </constraints>
                                 <items>
-                                    <tabBarItem systemItem="favorites" id="eow-Sn-CVd"/>
-                                    <tabBarItem systemItem="more" id="zug-CI-NKo"/>
+                                    <tabBarItem title="Item 1" image="pencil.circle" catalog="system" id="2dV-x8-9eN"/>
+                                    <tabBarItem title="Item 2" image="square.and.arrow.up" catalog="system" id="kmn-QA-H27"/>
+                                    <tabBarItem title="Item 3" image="doc.fill" catalog="system" id="N9s-v2-Gf6"/>
+                                    <tabBarItem title="Item 4" image="cloud" catalog="system" id="y6p-q6-hJC"/>
+                                    <tabBarItem title="Item 5" image="person.circle.fill" catalog="system" id="wJa-CT-Kam"/>
                                 </items>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="selectionIndicatorIsOn" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="selectedItemIndex">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="selectionIndicatorType">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="selectionIdicatorDuration">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="selectionIndicatorAlpha">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="selectionIndicatorColor">
+                                        <color key="value" red="0.9584286809" green="0.56015914680000001" blue="0.69572407010000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </tabBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MD4-lT-wFH">
+                                <rect key="frame" x="0.0" y="44" width="414" height="768"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="jYT-L8-6Zd" secondAttribute="bottom" id="d0O-KE-nvh"/>
-                            <constraint firstAttribute="trailing" secondItem="jYT-L8-6Zd" secondAttribute="trailing" id="dYr-3F-gtU"/>
-                            <constraint firstItem="jYT-L8-6Zd" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="hi1-LU-ins"/>
+                            <constraint firstItem="MD4-lT-wFH" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="IDA-6y-MRr"/>
+                            <constraint firstItem="4CA-i5-hKo" firstAttribute="top" secondItem="MD4-lT-wFH" secondAttribute="bottom" id="Iwi-vg-aAL"/>
+                            <constraint firstItem="4CA-i5-hKo" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="clw-4u-Wrr"/>
+                            <constraint firstAttribute="trailing" secondItem="MD4-lT-wFH" secondAttribute="trailing" id="gKu-CF-YY4"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="4CA-i5-hKo" secondAttribute="bottom" id="hWR-8W-OWL"/>
+                            <constraint firstItem="MD4-lT-wFH" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="hmG-R7-S06"/>
+                            <constraint firstAttribute="trailing" secondItem="4CA-i5-hKo" secondAttribute="trailing" id="miB-SF-D5B"/>
+                            <constraint firstItem="4CA-i5-hKo" firstAttribute="top" secondItem="MD4-lT-wFH" secondAttribute="bottom" id="pfc-FT-4YF"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="22" y="119"/>
+            <point key="canvasLocation" x="20.289855072463769" y="117.85714285714285"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="4CA-i5-hKo">
+            <size key="intrinsicContentSize" width="-1" height="49"/>
+        </designable>
+    </designables>
+    <resources>
+        <image name="cloud" catalog="system" width="128" height="87"/>
+        <image name="doc.fill" catalog="system" width="115" height="128"/>
+        <image name="pencil.circle" catalog="system" width="128" height="121"/>
+        <image name="person.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
+    </resources>
 </document>
