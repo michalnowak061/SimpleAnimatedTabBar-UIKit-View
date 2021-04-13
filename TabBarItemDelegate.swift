@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+protocol TabBarItemDelegate: class {
+    func clicked(tag: Int)
+}

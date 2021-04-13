@@ -16,8 +16,13 @@
 		7480268AF4BDD44A5B4CD805C102FFAB /* Pods-SimpleAnimatedTabBar_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AB0CF8FF6BD61D2B799940E070766ED0 /* Pods-SimpleAnimatedTabBar_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8C660717BCB0FA5BF2CC33C3DF15E900 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		98236FF38D8A69DB1524E73F2703A847 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		9D14114D2624557D00B855CA /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D14114C2624557D00B855CA /* UIViewExtensions.swift */; };
 		9D26A135261FC53800DB58F6 /* SimpleAnimatedTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D26A134261FC53800DB58F6 /* SimpleAnimatedTabBar.swift */; };
 		9D26A142261FC91600DB58F6 /* InstanceCountable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D26A141261FC91600DB58F6 /* InstanceCountable.swift */; };
+		9D69CAAC2624D22400EB8DB6 /* SelectionIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D69CAAB2624D22400EB8DB6 /* SelectionIndicator.swift */; };
+		9DD63071262498CF00C7C17B /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD63070262498CF00C7C17B /* TabBarItem.swift */; };
+		9DD630762624993C00C7C17B /* TabBarItemDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD630752624993C00C7C17B /* TabBarItemDelegate.swift */; };
+		9DD6307B26249DD600C7C17B /* SimpleAnimatedTabBarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD6307A26249DD600C7C17B /* SimpleAnimatedTabBarExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,9 +61,14 @@
 		7DE85028FE4CCB79D9EFD1FAD19879B5 /* Pods-SimpleAnimatedTabBar_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SimpleAnimatedTabBar_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		8021159AF4BC9BF6D766D18F287FAC6A /* SimpleAnimatedTabBar.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SimpleAnimatedTabBar.modulemap; sourceTree = "<group>"; };
 		8BCE471A47C414F29B12F0B81729A073 /* SimpleAnimatedTabBar.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = SimpleAnimatedTabBar.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D14114C2624557D00B855CA /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		9D26A134261FC53800DB58F6 /* SimpleAnimatedTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SimpleAnimatedTabBar.swift; path = SimpleAnimatedTabBar/Classes/SimpleAnimatedTabBar.swift; sourceTree = "<group>"; };
 		9D26A141261FC91600DB58F6 /* InstanceCountable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InstanceCountable.swift; path = SimpleAnimatedTabBar/Classes/InstanceCountable.swift; sourceTree = "<group>"; };
+		9D69CAAB2624D22400EB8DB6 /* SelectionIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionIndicator.swift; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9DD63070262498CF00C7C17B /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
+		9DD630752624993C00C7C17B /* TabBarItemDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemDelegate.swift; sourceTree = "<group>"; };
+		9DD6307A26249DD600C7C17B /* SimpleAnimatedTabBarExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAnimatedTabBarExtensions.swift; sourceTree = "<group>"; };
 		AAF5AD988DCBE112268B6F1A9EA5EFDA /* Pods-SimpleAnimatedTabBar_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SimpleAnimatedTabBar_Example.modulemap"; sourceTree = "<group>"; };
 		AB0CF8FF6BD61D2B799940E070766ED0 /* Pods-SimpleAnimatedTabBar_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SimpleAnimatedTabBar_Example-umbrella.h"; sourceTree = "<group>"; };
 		AD3CB22450139021F42BD4913F653880 /* Pods-SimpleAnimatedTabBar_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SimpleAnimatedTabBar_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
@@ -208,6 +218,11 @@
 			isa = PBXGroup;
 			children = (
 				9D26A134261FC53800DB58F6 /* SimpleAnimatedTabBar.swift */,
+				9DD6307A26249DD600C7C17B /* SimpleAnimatedTabBarExtensions.swift */,
+				9DD63070262498CF00C7C17B /* TabBarItem.swift */,
+				9DD630752624993C00C7C17B /* TabBarItemDelegate.swift */,
+				9D69CAAB2624D22400EB8DB6 /* SelectionIndicator.swift */,
+				9D14114C2624557D00B855CA /* UIViewExtensions.swift */,
 				9D26A141261FC91600DB58F6 /* InstanceCountable.swift */,
 				F161ECAE6F1EEF8C6EFEAF8F98CE2AD3 /* Pod */,
 				3AB9CC3E3AC1EECB6BDFA7EA520571F0 /* Support Files */,
@@ -380,6 +395,11 @@
 			files = (
 				9D26A135261FC53800DB58F6 /* SimpleAnimatedTabBar.swift in Sources */,
 				9D26A142261FC91600DB58F6 /* InstanceCountable.swift in Sources */,
+				9DD6307B26249DD600C7C17B /* SimpleAnimatedTabBarExtensions.swift in Sources */,
+				9DD63071262498CF00C7C17B /* TabBarItem.swift in Sources */,
+				9DD630762624993C00C7C17B /* TabBarItemDelegate.swift in Sources */,
+				9D14114D2624557D00B855CA /* UIViewExtensions.swift in Sources */,
+				9D69CAAC2624D22400EB8DB6 /* SelectionIndicator.swift in Sources */,
 				1CE1671371BCCE19B7B452330C0D9B22 /* SimpleAnimatedTabBar-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -495,7 +515,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -591,7 +611,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";

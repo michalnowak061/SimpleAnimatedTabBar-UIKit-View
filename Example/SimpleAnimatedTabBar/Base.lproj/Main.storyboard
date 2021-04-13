@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,55 +20,63 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tabBar contentMode="scaleToFill" itemPositioning="fill" translatesAutoresizingMaskIntoConstraints="NO" id="4CA-i5-hKo" customClass="SimpleAnimatedTabBar" customModule="SimpleAnimatedTabBar">
-                                <rect key="frame" x="0.0" y="812" width="414" height="50"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UqO-fl-zuz" customClass="SimpleAnimatedTabBar" customModule="SimpleAnimatedTabBar">
+                                <rect key="frame" x="0.0" y="758.5" width="414" height="103.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="4CA-i5-hKo" secondAttribute="height" multiplier="414:50" id="igL-zg-xRF"/>
+                                    <constraint firstAttribute="width" secondItem="UqO-fl-zuz" secondAttribute="height" multiplier="200:50" id="cIN-cu-kCl"/>
                                 </constraints>
-                                <items>
-                                    <tabBarItem title="Item 1" image="pencil.circle" catalog="system" id="2dV-x8-9eN"/>
-                                    <tabBarItem title="Item 2" image="square.and.arrow.up" catalog="system" id="kmn-QA-H27"/>
-                                    <tabBarItem title="Item 3" image="doc.fill" catalog="system" id="N9s-v2-Gf6"/>
-                                    <tabBarItem title="Item 4" image="cloud" catalog="system" id="y6p-q6-hJC"/>
-                                    <tabBarItem title="Item 5" image="person.circle.fill" catalog="system" id="wJa-CT-Kam"/>
-                                </items>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="selectionIndicatorIsOn" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="selectedItemIndex">
-                                        <integer key="value" value="0"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="numberOfItems">
+                                        <integer key="value" value="2"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="selectionIndicatorType">
-                                        <integer key="value" value="3"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="tabBarCornerRadius">
+                                        <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="selectionIdicatorDuration">
-                                        <real key="value" value="0.5"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="tabBarBackgroundColor">
+                                        <color key="value" systemColor="systemGreenColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="stackViewBackgroundColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="tabBarItemBacgroundColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="tabBarItemCornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="stackViewSpacing">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="tabBarItemAnimationDuration">
+                                        <real key="value" value="0.29999999999999999"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="tabBarItemClickAnimationType">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="selectionIndicatorBackgroundColor">
+                                        <color key="value" systemColor="systemRedColor"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="selectionIndicatorAlpha">
-                                        <real key="value" value="0.5"/>
+                                        <real key="value" value="2"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="selectionIndicatorColor">
-                                        <color key="value" red="0.9584286809" green="0.56015914680000001" blue="0.69572407010000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="selectionIndicatorAnimationDuration">
+                                        <real key="value" value="0.29999999999999999"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="selectionIndicatorCornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="selectionIndicatorType">
+                                        <integer key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                            </tabBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MD4-lT-wFH">
-                                <rect key="frame" x="0.0" y="44" width="414" height="768"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="MD4-lT-wFH" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="IDA-6y-MRr"/>
-                            <constraint firstItem="4CA-i5-hKo" firstAttribute="top" secondItem="MD4-lT-wFH" secondAttribute="bottom" id="Iwi-vg-aAL"/>
-                            <constraint firstItem="4CA-i5-hKo" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="clw-4u-Wrr"/>
-                            <constraint firstAttribute="trailing" secondItem="MD4-lT-wFH" secondAttribute="trailing" id="gKu-CF-YY4"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="4CA-i5-hKo" secondAttribute="bottom" id="hWR-8W-OWL"/>
-                            <constraint firstItem="MD4-lT-wFH" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="hmG-R7-S06"/>
-                            <constraint firstAttribute="trailing" secondItem="4CA-i5-hKo" secondAttribute="trailing" id="miB-SF-D5B"/>
-                            <constraint firstItem="4CA-i5-hKo" firstAttribute="top" secondItem="MD4-lT-wFH" secondAttribute="bottom" id="pfc-FT-4YF"/>
+                            <constraint firstAttribute="trailing" secondItem="UqO-fl-zuz" secondAttribute="trailing" id="FfJ-VT-JP1"/>
+                            <constraint firstItem="UqO-fl-zuz" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="LXk-yG-U5m"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="UqO-fl-zuz" secondAttribute="bottom" id="QO4-Fu-6h0"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -76,16 +85,12 @@
             <point key="canvasLocation" x="20.289855072463769" y="117.85714285714285"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="4CA-i5-hKo">
-            <size key="intrinsicContentSize" width="-1" height="49"/>
-        </designable>
-    </designables>
     <resources>
-        <image name="cloud" catalog="system" width="128" height="87"/>
-        <image name="doc.fill" catalog="system" width="115" height="128"/>
-        <image name="pencil.circle" catalog="system" width="128" height="121"/>
-        <image name="person.circle.fill" catalog="system" width="128" height="121"/>
-        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

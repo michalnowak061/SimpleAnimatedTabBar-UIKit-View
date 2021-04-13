@@ -7,230 +7,214 @@
 
 import UIKit
 
-enum SelectionIndicatorType: Int, CaseIterable {
-    case rectangle
-    case square
-    case ellipse
-    case circle
-}
-
-@IBDesignable class SimpleAnimatedTabBar: UITabBar, InstanceCountable {
+@IBDesignable class SimpleAnimatedTabBar: UIView, InstanceCountable {
     // MARK: -- Public variable's
     public static var instanceCounter: Int = 0
     
     // MARK: -- Private variable's
-    private var isInterfaceBuilder: Bool = false
-        
-    private var tabBarItemCount: Int {
-        get {
-            if let count = self.items?.count {
-                return count
-            } else {
-                return 0
-            }
-        }
-    }
+    private var tabBarView: UIView = UIView()
+    
+    private var stackView: UIStackView = UIStackView()
+    
+    private var tabBarItems: [TabBarItem] = []
     
     private var tabBarItemSize: CGSize {
         get {
-            return CGSize(width: self.frame.width / CGFloat(self.tabBarItemCount), height: self.frame.height)
+            let width = (self.stackView.frame.width - (CGFloat(self.numberOfItems - 1) * self.stackViewSpacing)) / CGFloat(self.numberOfItems)
+            let height = self.stackView.frame.height
+            return CGSize(width: width, height: height)
         }
     }
     
-    private var selectedTabBarItemFrame: UIView? {
-        get {
-            if let tabBarItemFrame = self.items?[self.selectedItemIndex].value(forKey: "view") as? UIView {
-                return tabBarItemFrame
-            } else {
-                return nil
-            }
-        }
-    }
+    private var selectionIndicator: SelectionIndicator = SelectionIndicator()
     
-    private var selectionIndicator: UIImageView? = nil
-    
-    private var selectionIndicatorTypeEnum: SelectionIndicatorType {
-        get {
-            return SelectionIndicatorType(rawValue: self.selectionIndicatorType) ?? .ellipse
-        }
-    }
-    
-    // MARK -- IBInspectable's
-    @IBInspectable var selectedItemIndex: Int = 0 {
-        didSet(newSelectedItemIndex) {
-            guard newSelectedItemIndex <= self.tabBarItemCount && newSelectedItemIndex >= 0 else {
-                self.selectedItemIndex = 0
-                return
-            }
-            self.update()
-        }
-    }
-    
-    @IBInspectable var selectionIndicatorIsOn: Bool = false {
+    // MARK: -- Private IBInspectable's
+    @IBInspectable private var numberOfItems: Int = 2 {
         didSet {
-            selectionIndicatorSetup()
+            self.tabBarItems.removeAll()
+            
+            for index in 0 ..< self.numberOfItems {
+                let tabBarItem = TabBarItem()
+                tabBarItem.delegate = self
+                tabBarItem.tag = index
+                
+                self.tabBarItems.append(tabBarItem)
+                self.stackView.addArrangedSubview(tabBarItem)
+            }
         }
     }
     
-    @IBInspectable var selectionIndicatorColor: UIColor = #colorLiteral(red: 0.9739994407, green: 0.7346709371, blue: 0.8141820431, alpha: 1) {
+    @IBInspectable private var tabBarBackgroundColor: UIColor = .systemBlue {
         didSet {
-            selectionIndicatorSetup()
+            self.tabBarView.backgroundColor = tabBarBackgroundColor
+        }
+    }
+        
+    @IBInspectable private var tabBarCornerRadius: CGFloat = 0 {
+        didSet {
+            self.tabBarView.cornerRadius = tabBarCornerRadius
         }
     }
     
-    @IBInspectable private var selectionIndicatorType: Int = 0 {
-        didSet(newValue) {
-            guard newValue <= SelectionIndicatorType.allCases.count else {
-                return
+    @IBInspectable private var stackViewBackgroundColor: UIColor = .systemPink {
+        didSet {
+            self.stackView.backgroundColor = stackViewBackgroundColor
+        }
+    }
+    
+    @IBInspectable private var stackViewSpacing: CGFloat = 10 {
+        didSet {
+            self.stackView.spacing = stackViewSpacing
+        }
+    }
+    
+    @IBInspectable private var tabBarItemBacgroundColor: UIColor = .systemTeal {
+        didSet {
+            _ = self.tabBarItems.map {
+                $0.backgroundColor = tabBarItemBacgroundColor
             }
-            selectionIndicatorSetup()
         }
     }
     
-    @IBInspectable private var selectionIdicatorDuration: Float = 0.2 {
-        willSet(newValue) {
-            if newValue >= 0 {
-                self.selectionIdicatorDuration = newValue
-            } else {
-                self.selectionIdicatorDuration = 0
+    @IBInspectable private var tabBarItemCornerRadius: CGFloat = 0 {
+        didSet {
+            _ = self.tabBarItems.map {
+                $0.cornerRadius = tabBarItemCornerRadius
             }
         }
     }
     
-    @IBInspectable private var selectionIndicatorAlpha: CGFloat = 1.0 {
-        didSet(newValue) {
-            guard newValue <= 1.0 && newValue >= 0 else {
-                return
+    @IBInspectable private var tabBarItemClickAnimationType: Int = TabBarItemClickAnimationType.rotation.rawValue {
+        didSet {
+            _ = self.tabBarItems.map {
+                $0.clickAnimationType = TabBarItemClickAnimationType(rawValue: self.tabBarItemClickAnimationType) ?? TabBarItemClickAnimationType.rotation
             }
-            selectionIndicatorSetup()
         }
     }
-
-    // MARK: -- Override's and init/deinit
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    
+    @IBInspectable private var tabBarItemAnimationDuration: Float = 0.3 {
+        didSet {
+            _ = self.tabBarItems.map {
+                $0.animationDuration = TimeInterval(tabBarItemAnimationDuration)
+            }
+        }
     }
     
+    @IBInspectable private var selectionIndicatorType: Int = SelectionIndicatorType.rectangle.rawValue {
+        didSet {
+            self.selectionIndicator.type = SelectionIndicatorType(rawValue: self.selectionIndicatorType) ?? SelectionIndicatorType.none
+            print("type: ", self.selectionIndicator.type)
+        }
+    }
+    
+    @IBInspectable private var selectionIndicatorBackgroundColor: UIColor = .cyan {
+        didSet {
+            self.selectionIndicator.indicatorBackgroundColor = self.selectionIndicatorBackgroundColor
+        }
+    }
+    
+    @IBInspectable private var selectionIndicatorAlpha: CGFloat = 0.5 {
+        didSet {
+            self.selectionIndicator.alpha = self.selectionIndicatorAlpha
+        }
+    }
+    
+    @IBInspectable private var selectionIndicatorAnimationDuration: Float = 0.3 {
+        didSet {
+            self.selectionIndicator.animationDuration = TimeInterval(self.selectionIndicatorAnimationDuration)
+        }
+    }
+    
+    @IBInspectable private var selectionIndicatorCornerRadius: CGFloat = 0 {
+        didSet {
+            self.selectionIndicator.cornerRadius = self.selectionIndicatorCornerRadius
+        }
+    }
+    
+    // MARK: -- Private function's
+    private func setupTabBarView() {
+        let tabBarViewWidth = self.frame.width * 1
+        let tabBarViewHeight = self.frame.height * 1
+        
+        self.tabBarView.frame = CGRect(x: 0, y: 0, width: tabBarViewWidth, height: tabBarViewHeight)
+        self.tabBarView.center.x = self.frame.width / 2
+        self.tabBarView.center.y = self.frame.height / 2
+        
+        self.addSubview(self.tabBarView)
+    }
+    
+    private func setupHorizontalStackView() {
+        let horizontalStackViewWidth = self.tabBarView.frame.width * 0.9
+        let horizontalStackViewHeight = self.tabBarView.frame.height * 0.6
+        
+        self.stackView.frame = CGRect(x: 0, y: 0, width: horizontalStackViewWidth, height: horizontalStackViewHeight)
+        self.stackView.center.x = self.frame.width / 2
+        self.stackView.center.y = self.frame.height / 2
+        
+        self.stackView.axis = .horizontal
+        self.stackView.distribution = .fillEqually
+        self.stackView.alignment = .fill
+        
+        self.addSubview(self.stackView)
+    }
+    
+    private func setupTabBarItems() {
+        for index in 0 ..< self.numberOfItems {
+            let tabBarItem = self.tabBarItems[index]
+            let tabBarItemSize = self.tabBarItemSize
+            tabBarItem.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: tabBarItemSize)
+        }
+    }
+    
+    private func setupSelectionIndicator() {
+        let selectionIndicatorWidth = self.tabBarItemSize.width
+        let selectionIndicatorHeight = self.tabBarView.frame.height
+        
+        let selectionIndicatorFrame = CGRect(x: self.stackView.frame.minX, y: 0, width: selectionIndicatorWidth, height: selectionIndicatorHeight)
+        self.selectionIndicator.frame = selectionIndicatorFrame
+        self.selectionIndicator.center.y = self.stackView.center.y
+        
+        self.insertSubview(self.selectionIndicator, at: 1)
+    }
+    
+    // MARK: -- Public function's
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         SimpleAnimatedTabBar.instanceCounter += 1
-        
-        self.delegate = self
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
     }
     
     deinit {
         SimpleAnimatedTabBar.instanceCounter -= 1
     }
     
-    override func prepareForInterfaceBuilder() {
-        self.isInterfaceBuilder = true
-    }
-    
     override func draw(_ rect: CGRect) {
-        // Drawing code
-        if !self.isInterfaceBuilder {
-            // code for runtime
-        }
-    }
-    
-    // MARK: -- Public function's
-    
-    // MARK: -- Private function's
-    private func update() {
-        self.selectTabBarItem(atIndex: self.selectedItemIndex)
-    }
-    
-    private func selectTabBarItem(atIndex index: Int) {
-        if let selectedItem = self.items?[index] {
-            self.selectedItem = selectedItem as UITabBarItem
-            self.selectAnimation(tabBarItemIndex: index, withDuration: TimeInterval(self.selectionIdicatorDuration))
-        }
-    }
-    
-    private func tabBarItemCenter(forIndex index: Int) -> CGPoint? {
-        if let tabBarItemFrame = self.selectedTabBarItemFrame {
-            return CGPoint(x: tabBarItemFrame.center.x,
-                           y: tabBarItemFrame.center.y)
-        } else {
-            return nil
-        }
-    }
-    
-    private func getSelectionIndicatorImageView(type: SelectionIndicatorType, size: CGSize, point: CGPoint, color: UIColor) -> UIImageView {
-        let renderer = UIGraphicsImageRenderer(size: CGSize(width: size.width, height: size.height))
-        let img = renderer.image { ctx in
-            ctx.cgContext.setFillColor(color.cgColor)
-            
-            switch type {
-            case .rectangle:
-                let rectangle = CGRect(x: point.x, y: point.y, width: size.width, height: size.height)
-                ctx.cgContext.addRect(rectangle)
-            case .square:
-                let diff = (size.width - size.height) / 2
-                let rectangle = CGRect(x: point.x + diff, y: point.y, width: size.height, height: size.height)
-                ctx.cgContext.addRect(rectangle)
-            case .ellipse:
-                let rectangle = CGRect(x: point.x, y: point.y, width: size.width, height: size.height)
-                ctx.cgContext.addEllipse(in: rectangle)
-            case .circle:
-                let diff = (size.width - size.height) / 2
-                let offset = diff
-                let rectangle = CGRect(x: point.x + diff - (offset/2), y: point.y - (offset/2),
-                                       width: size.height + offset, height: size.height + offset)
-                ctx.cgContext.addEllipse(in: rectangle)
-            }
-            
-            ctx.cgContext.drawPath(using: .fill)
-        }
-        return UIImageView(image: img)
-    }
-    
-    private func addSelectionIndicator(type: SelectionIndicatorType, color: UIColor, alpha: CGFloat) {
-        let indicatorSize = CGSize(width: tabBarItemSize.width, height: tabBarItemSize.height)
-        let indicatorPoint = CGPoint(x: self.selectedTabBarItemFrame?.frame.minX ?? CGFloat(0),
-                                     y: self.selectedTabBarItemFrame?.frame.minY ?? CGFloat(0))
+        self.setupTabBarView()
+        self.setupHorizontalStackView()
+        self.setupTabBarItems()
+        self.setupSelectionIndicator()
         
-        self.selectionIndicator = getSelectionIndicatorImageView(type: type, size: indicatorSize, point: indicatorPoint, color: color)
-        self.selectionIndicator!.alpha = alpha
-        self.insertSubview(self.selectionIndicator!, at: 0)
-    }
-    
-    private func removeSelectionIndicator() {
-        self.selectionIndicator?.removeFromSuperview()
-    }
-    
-    private func selectionIndicatorSetup() {
-        guard self.selectionIndicatorIsOn else {
-            return
+        if #available(iOS 13.0, *) {
+            self.tabBarItems[0].image = UIImage(systemName: "house.fill")!
+            self.tabBarItems[1].image = UIImage(systemName: "circle.fill")!
+            //self.tabBarItems[2].image = UIImage(systemName: "circle.fill")!
+            //self.tabBarItems[3].image = UIImage(systemName: "house.fill")!
         }
-        
-        let type = self.selectionIndicatorTypeEnum
-        let color = self.selectionIndicatorColor
-        let alpha = self.selectionIndicatorAlpha
-        
-        self.removeSelectionIndicator()
-        self.addSelectionIndicator(type: type, color: color, alpha: alpha)
     }
     
-    private func selectAnimation(tabBarItemIndex index: Int, withDuration duration: TimeInterval = 0.3) {
-        if let tabBarItemCenter = self.tabBarItemCenter(forIndex: index) {
-            if duration > 0 {
-                UIView.animate(withDuration: duration) {
-                    self.selectionIndicator?.center.x = tabBarItemCenter.x
-                }
-            } else {
-                self.selectionIndicator?.center.x = tabBarItemCenter.x
+    public func releaseTabBarItems(withoutTag: Int) {
+        _ = self.tabBarItems.map {
+            if $0.tag != withoutTag {
+                $0.isSelected = false
             }
         }
     }
-}
-
-// MARK: -- Extension's
-extension SimpleAnimatedTabBar: UITabBarDelegate {
-    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        if let index = self.items?.firstIndex(of: item) {
-            self.selectedItemIndex = index
-        }
+    
+    public func selectionIndicatorUpdate(tag: Int) {
+        self.selectionIndicator.translateAnimation(selectedIndex: tag, spacing: self.stackViewSpacing, itemsCount: self.numberOfItems)
     }
 }
