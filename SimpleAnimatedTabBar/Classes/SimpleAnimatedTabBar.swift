@@ -176,6 +176,9 @@ import UIKit
             let tabBarItemSize = self.tabBarItemSize
             
             tabBarItem.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: tabBarItemSize)
+            
+            tabBarItem.image = UIImage(systemName: "square.fill") ?? UIImage()
+            tabBarItem.name = "item"
         }
     }
     
@@ -207,19 +210,10 @@ import UIKit
     }
     
     public override func draw(_ rect: CGRect) {
-        //super.draw(rect)
-        
         self.setupTabBarView()
         self.setupHorizontalStackView()
         self.setupTabBarItems()
         self.setupSelectionIndicator()
-        
-        if #available(iOS 13.0, *) {
-            self.tabBarItems[0].image = UIImage(systemName: "square.fill")!
-            self.tabBarItems[1].image = UIImage(systemName: "square.fill")!
-            self.tabBarItems[2].image = UIImage(systemName: "square.fill")!
-            self.tabBarItems[3].image = UIImage(systemName: "square.fill")!
-        }
     }
     
     public func releaseTabBarItems(withoutTag: Int) {

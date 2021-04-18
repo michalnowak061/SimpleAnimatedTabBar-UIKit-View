@@ -26,10 +26,9 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JNG-uF-URD" customClass="SimpleAnimatedTabBar" customModule="SimpleAnimatedTabBar">
                                 <rect key="frame" x="0.0" y="800" width="414" height="62"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <color key="tintColor" systemColor="systemPurpleColor"/>
+                                <color key="tintColor" systemColor="labelColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="JNG-uF-URD" secondAttribute="height" multiplier="200:30" id="wNP-0s-krJ"/>
+                                    <constraint firstAttribute="width" secondItem="JNG-uF-URD" secondAttribute="height" multiplier="200:30" id="nJO-QO-Rtj"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="tabBarBackgroundColor">
@@ -73,11 +72,11 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="JNG-uF-URD" secondAttribute="bottom" id="0m6-Ky-sF9"/>
+                            <constraint firstItem="JNG-uF-URD" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="5dd-Lf-t4i"/>
                             <constraint firstItem="vee-Jb-ghq" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="AhD-pX-2TF"/>
-                            <constraint firstAttribute="bottom" secondItem="vee-Jb-ghq" secondAttribute="bottom" id="CfJ-I4-2lA"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="JNG-uF-URD" secondAttribute="bottom" id="Fse-sB-5fD"/>
-                            <constraint firstAttribute="trailing" secondItem="JNG-uF-URD" secondAttribute="trailing" id="JBr-q1-mdQ"/>
-                            <constraint firstItem="JNG-uF-URD" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Z28-AU-PZN"/>
+                            <constraint firstAttribute="bottom" secondItem="vee-Jb-ghq" secondAttribute="bottom" id="RhB-oR-A4X"/>
+                            <constraint firstAttribute="trailing" secondItem="JNG-uF-URD" secondAttribute="trailing" id="Vpq-40-yWx"/>
                             <constraint firstAttribute="trailing" secondItem="vee-Jb-ghq" secondAttribute="trailing" id="dJR-lI-DrT"/>
                             <constraint firstItem="vee-Jb-ghq" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="ovA-s7-GVt"/>
                         </constraints>
@@ -164,7 +163,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Third View Controller" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a69-ow-wPq">
-                                <rect key="frame" x="127" y="437.5" width="160.5" height="21"/>
+                                <rect key="frame" x="126.5" y="437.5" width="161" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -213,6 +212,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

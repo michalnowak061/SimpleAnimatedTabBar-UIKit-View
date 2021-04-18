@@ -29,6 +29,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         self.simpleAnimatedTabBar.delegate = self
         self.simpleAnimatedTabBar.selectedIndex = 2
+        self.navigationController?.navigationBar.backgroundColor = .red
     }
 }
 
