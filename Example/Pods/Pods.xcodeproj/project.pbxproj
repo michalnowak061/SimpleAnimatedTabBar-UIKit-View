@@ -19,7 +19,7 @@
 		8C660717BCB0FA5BF2CC33C3DF15E900 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		99FA700EE429D2F11B763BBF528BD10E /* SimpleAnimatedTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BFA7B5A44BBF2E6BE3F1CDF0122A85 /* SimpleAnimatedTabBar.swift */; };
 		9CE24BEC37C5305B441D31E593B7AF08 /* SimpleAnimatedTabBar-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 51D8D82E9C2323FE775D5F44A6360334 /* SimpleAnimatedTabBar-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9DB9A483262C827A0049B50A /* SimpleAnimatedTabBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB9A482262C827A0049B50A /* SimpleAnimatedTabBarDelegate.swift */; };
+		9D93C790262C87E000039C7F /* SimpleAnimatedTabBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D93C78F262C87DF00039C7F /* SimpleAnimatedTabBarDelegate.swift */; };
 		AAA54B3097B1B3CB77410FD010062295 /* InstanceCountable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3C1E13453E0DBB595FDDFB56CBC522 /* InstanceCountable.swift */; };
 		C018C4A5FBC8D6EE0AE64B9B76764D58 /* SimpleAnimatedTabBarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC34C2AE9B22D5A9CEC5479B610608E /* SimpleAnimatedTabBarExtensions.swift */; };
 		E31F42265B2DC0FF3FE18F68E6A09490 /* SimpleAnimatedTabBar-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE3D5CDD693CE80F2C31FDB77B9AA1F /* SimpleAnimatedTabBar-dummy.m */; };
@@ -63,8 +63,8 @@
 		6CF891FF76B96E7E19F21DAE0A47596E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		7DE85028FE4CCB79D9EFD1FAD19879B5 /* Pods-SimpleAnimatedTabBar_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SimpleAnimatedTabBar_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		9D93C78F262C87DF00039C7F /* SimpleAnimatedTabBarDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimpleAnimatedTabBarDelegate.swift; path = SimpleAnimatedTabBar/Classes/SimpleAnimatedTabBarDelegate.swift; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9DB9A482262C827A0049B50A /* SimpleAnimatedTabBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAnimatedTabBarDelegate.swift; sourceTree = "<group>"; };
 		A8C295B4F3F14867EEB1445097AB1AC8 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		AAF5AD988DCBE112268B6F1A9EA5EFDA /* Pods-SimpleAnimatedTabBar_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SimpleAnimatedTabBar_Example.modulemap"; sourceTree = "<group>"; };
 		AB0CF8FF6BD61D2B799940E070766ED0 /* Pods-SimpleAnimatedTabBar_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SimpleAnimatedTabBar_Example-umbrella.h"; sourceTree = "<group>"; };
@@ -151,7 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				C2BFA7B5A44BBF2E6BE3F1CDF0122A85 /* SimpleAnimatedTabBar.swift */,
-				9DB9A482262C827A0049B50A /* SimpleAnimatedTabBarDelegate.swift */,
+				9D93C78F262C87DF00039C7F /* SimpleAnimatedTabBarDelegate.swift */,
 				5CC34C2AE9B22D5A9CEC5479B610608E /* SimpleAnimatedTabBarExtensions.swift */,
 				BE1922D277B8FB89C87634393749B378 /* TabBarItem.swift */,
 				BACBBB2EBAF851023CE4B472F1863360 /* TabBarItemDelegate.swift */,
@@ -393,7 +393,7 @@
 				E31F42265B2DC0FF3FE18F68E6A09490 /* SimpleAnimatedTabBar-dummy.m in Sources */,
 				99FA700EE429D2F11B763BBF528BD10E /* SimpleAnimatedTabBar.swift in Sources */,
 				C018C4A5FBC8D6EE0AE64B9B76764D58 /* SimpleAnimatedTabBarExtensions.swift in Sources */,
-				9DB9A483262C827A0049B50A /* SimpleAnimatedTabBarDelegate.swift in Sources */,
+				9D93C790262C87E000039C7F /* SimpleAnimatedTabBarDelegate.swift in Sources */,
 				F2AAF698D6F5B623ED71B3FC490895CF /* TabBarItem.swift in Sources */,
 				63D219AC1E2D962F8AA0A8F1D247F3BF /* TabBarItemDelegate.swift in Sources */,
 				5D572DF61D2C4AA021D8F49B1518D04A /* UIViewExtensions.swift in Sources */,
