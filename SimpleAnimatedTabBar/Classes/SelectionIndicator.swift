@@ -18,7 +18,6 @@ enum SelectionIndicatorType: Int, CaseIterable {
 
 class SelectionIndicator: UIView {
     // MARK: -- Private variable's
-    private var actualIndex: Int = 0
     
     // MARK: -- Public variable's
     public var indicatorBackgroundColor: UIColor = .blue
@@ -28,6 +27,8 @@ class SelectionIndicator: UIView {
     public var type: SelectionIndicatorType = .square
     
     public var centerPoint: CGPoint?
+    
+    public var actualIndex: Int = 0
     
     // MARK: -- Public function's
     override func didMoveToSuperview() {

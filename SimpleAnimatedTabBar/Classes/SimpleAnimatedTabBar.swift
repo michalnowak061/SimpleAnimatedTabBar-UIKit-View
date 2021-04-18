@@ -7,11 +7,22 @@
 
 import UIKit
 
-@IBDesignable class SimpleAnimatedTabBar: UIView, InstanceCountable {
+@IBDesignable public class SimpleAnimatedTabBar: UIView, InstanceCountable {
     // MARK: -- Public variable's
     public static var instanceCounter: Int = 0
     
     public weak var delegate: SimpleAnimatedTabBarDelegate?
+    
+    public var selectedIndex: Int {
+        get {
+            return self.selectionIndicator.actualIndex
+        }
+        set {
+            DispatchQueue.main.async {
+                self.select(at: newValue)
+            }
+        }
+    }
     
     // MARK: -- Private variable's
     private var tabBarView: UIView = UIView()
@@ -195,7 +206,9 @@ import UIKit
         SimpleAnimatedTabBar.instanceCounter -= 1
     }
     
-    override func draw(_ rect: CGRect) {
+    public override func draw(_ rect: CGRect) {
+        //super.draw(rect)
+        
         self.setupTabBarView()
         self.setupHorizontalStackView()
         self.setupTabBarItems()
@@ -217,7 +230,14 @@ import UIKit
         }
     }
     
-    public func selectionIndicatorUpdate(tag: Int) {
-        self.selectionIndicator.translateAnimation(selectedIndex: tag, spacing: self.stackViewSpacing, itemsCount: self.numberOfItems)
+    public func select(at index: Int) {
+        self.tabBarItems[index].select(atIndex: index)
+    }
+    
+    public func selectTabBarItem(at index: Int) {
+        self.releaseTabBarItems(withoutTag: index)
+        self.selectionIndicator.translateAnimation(selectedIndex: index, spacing: self.stackViewSpacing, itemsCount: self.numberOfItems)
+        
+        self.delegate?.simpleAnimatedTabBar(self, didSelectItemAt: index)
     }
 }

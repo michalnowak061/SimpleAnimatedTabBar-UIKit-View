@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol SimpleAnimatedTabBarDelegate: class {
+public protocol SimpleAnimatedTabBarDelegate: class {
     func simpleAnimatedTabBar(_ simpleAnimatedTabBar: SimpleAnimatedTabBar, didSelectItemAt index: Int)
 }

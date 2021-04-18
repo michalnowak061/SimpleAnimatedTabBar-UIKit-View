@@ -55,6 +55,10 @@ class TabBarItem: UIView {
         self.addGestureRecognizer(tap)
     }
     
+    public func select(atIndex index: Int) {
+        self.handleTap()
+    }
+    
     // MARK: -- Private function's
     private func setupImageView() {
         let height = self.frame.height * 0.5
