@@ -11,5 +11,7 @@ extension SimpleAnimatedTabBar: TabBarItemDelegate {
     func clicked(tag: Int) {
         self.releaseTabBarItems(withoutTag: tag)
         self.selectionIndicatorUpdate(tag: tag)
+        
+        self.delegate?.simpleAnimatedTabBar(self, didSelectItemAt: tag)
     }
 }

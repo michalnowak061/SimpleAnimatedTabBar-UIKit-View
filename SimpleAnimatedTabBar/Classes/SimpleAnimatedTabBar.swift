@@ -11,6 +11,8 @@ import UIKit
     // MARK: -- Public variable's
     public static var instanceCounter: Int = 0
     
+    public weak var delegate: SimpleAnimatedTabBarDelegate?
+    
     // MARK: -- Private variable's
     private var tabBarView: UIView = UIView()
     
@@ -103,7 +105,6 @@ import UIKit
     @IBInspectable private var selectionIndicatorType: Int = SelectionIndicatorType.rectangle.rawValue {
         didSet {
             self.selectionIndicator.type = SelectionIndicatorType(rawValue: self.selectionIndicatorType) ?? SelectionIndicatorType.none
-            print("type: ", self.selectionIndicator.type)
         }
     }
     
@@ -133,8 +134,8 @@ import UIKit
     
     // MARK: -- Private function's
     private func setupTabBarView() {
-        let tabBarViewWidth = self.frame.width * 1
-        let tabBarViewHeight = self.frame.height * 1
+        let tabBarViewWidth = self.frame.width * 1.0
+        let tabBarViewHeight = self.frame.height * 1.0
         
         self.tabBarView.frame = CGRect(x: 0, y: 0, width: tabBarViewWidth, height: tabBarViewHeight)
         self.tabBarView.center.x = self.frame.width / 2
@@ -145,7 +146,7 @@ import UIKit
     
     private func setupHorizontalStackView() {
         let horizontalStackViewWidth = self.tabBarView.frame.width * 0.9
-        let horizontalStackViewHeight = self.tabBarView.frame.height * 0.6
+        let horizontalStackViewHeight = self.tabBarView.frame.height * 1.0
         
         self.stackView.frame = CGRect(x: 0, y: 0, width: horizontalStackViewWidth, height: horizontalStackViewHeight)
         self.stackView.center.x = self.frame.width / 2
@@ -201,10 +202,10 @@ import UIKit
         self.setupSelectionIndicator()
         
         if #available(iOS 13.0, *) {
-            self.tabBarItems[0].image = UIImage(systemName: "house.fill")!
-            self.tabBarItems[1].image = UIImage(systemName: "house.fill")!
-            self.tabBarItems[2].image = UIImage(systemName: "house.fill")!
-            self.tabBarItems[3].image = UIImage(systemName: "house.fill")!
+            self.tabBarItems[0].image = UIImage(systemName: "square.fill")!
+            self.tabBarItems[1].image = UIImage(systemName: "square.fill")!
+            self.tabBarItems[2].image = UIImage(systemName: "square.fill")!
+            self.tabBarItems[3].image = UIImage(systemName: "square.fill")!
         }
     }
     

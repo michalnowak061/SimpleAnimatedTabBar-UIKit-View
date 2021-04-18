@@ -20,8 +20,11 @@ class TabBarItem: UIView {
     
     // MARK: -- Public variable's
     public weak var delegate: TabBarItemDelegate?
+    
     public var clickAnimationType: TabBarItemClickAnimationType = .rotation
+    
     public var animationDuration: TimeInterval = 0.3
+    
     public var isSelected: Bool = false {
         didSet(newValue) {
             if newValue != self.isSelected {

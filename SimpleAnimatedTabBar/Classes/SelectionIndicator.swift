@@ -12,7 +12,8 @@ enum SelectionIndicatorType: Int, CaseIterable {
     case rectangle
     case square
     case circle
-    case line
+    case downLine
+    case upLine
 }
 
 class SelectionIndicator: UIView {
@@ -54,8 +55,14 @@ class SelectionIndicator: UIView {
             circle.layer.cornerRadius = circle.frame.width / 2
             circle.center = self.centerPoint ?? CGPoint(x: 0, y: 0)
             self.addSubview(circle)
-        case .line:
+        case .downLine:
             let frame = CGRect(x: 0, y: 0.9 * self.frame.height, width: self.frame.width, height: self.frame.height * 0.1)
+            let line = UIView(frame: frame)
+            line.backgroundColor = self.indicatorBackgroundColor
+            line.cornerRadius = self.cornerRadius
+            self.addSubview(line)
+        case .upLine:
+            let frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height * 0.1)
             let line = UIView(frame: frame)
             line.backgroundColor = self.indicatorBackgroundColor
             line.cornerRadius = self.cornerRadius
@@ -64,7 +71,7 @@ class SelectionIndicator: UIView {
     }
     
     public func translateAnimation(selectedIndex index: Int, spacing: CGFloat, itemsCount: Int) {
-        if index == self.actualIndex && self.actualIndex != 0 {
+        if index == self.actualIndex {
             return
         }
         
@@ -79,12 +86,11 @@ class SelectionIndicator: UIView {
         
         UIView.animate(withDuration: self.animationDuration, delay: 0, options: .curveEaseOut) {
             self.transform = .identity
-            //self.transform = self.transform.translatedBy(x: translateVectorX + translateVectorXoffset, y: 0)
-            self.transform = self.transform.translatedBy(x: translateVectorX, y: 0)
+            self.transform = self.transform.translatedBy(x: translateVectorX + translateVectorXoffset, y: 0)
         }
         
         UIView.animate(withDuration: self.animationDuration, delay: self.animationDuration, options: .curveEaseOut) {
-            //self.transform = self.transform.translatedBy(x: -translateVectorXoffset, y: 0)
+            self.transform = self.transform.translatedBy(x: -translateVectorXoffset, y: 0)
         }
         
         self.actualIndex = index
