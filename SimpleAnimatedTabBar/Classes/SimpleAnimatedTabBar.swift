@@ -68,10 +68,10 @@ import UIKit
         }
     }
     
-    @IBInspectable private var tabBarItemBacgroundColor: UIColor = .systemTeal {
+    @IBInspectable private var tabBarItemBackgroundColor: UIColor = .systemTeal {
         didSet {
             _ = self.tabBarItems.map {
-                $0.backgroundColor = tabBarItemBacgroundColor
+                $0.backgroundColor = tabBarItemBackgroundColor
             }
         }
     }
@@ -162,17 +162,19 @@ import UIKit
         for index in 0 ..< self.numberOfItems {
             let tabBarItem = self.tabBarItems[index]
             let tabBarItemSize = self.tabBarItemSize
+            
             tabBarItem.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: tabBarItemSize)
         }
     }
     
     private func setupSelectionIndicator() {
         let selectionIndicatorWidth = self.tabBarItemSize.width
-        let selectionIndicatorHeight = self.tabBarView.frame.height
+        let selectionIndicatorHeight = self.stackView.frame.height
         
         let selectionIndicatorFrame = CGRect(x: self.stackView.frame.minX, y: 0, width: selectionIndicatorWidth, height: selectionIndicatorHeight)
         self.selectionIndicator.frame = selectionIndicatorFrame
-        self.selectionIndicator.center.y = self.stackView.center.y
+        self.selectionIndicator.center.y = self.tabBarView.center.y
+        self.selectionIndicator.centerPoint = self.stackView.arrangedSubviews[0].center
         
         self.insertSubview(self.selectionIndicator, at: 1)
     }
@@ -200,9 +202,9 @@ import UIKit
         
         if #available(iOS 13.0, *) {
             self.tabBarItems[0].image = UIImage(systemName: "house.fill")!
-            self.tabBarItems[1].image = UIImage(systemName: "circle.fill")!
-            //self.tabBarItems[2].image = UIImage(systemName: "circle.fill")!
-            //self.tabBarItems[3].image = UIImage(systemName: "house.fill")!
+            self.tabBarItems[1].image = UIImage(systemName: "house.fill")!
+            self.tabBarItems[2].image = UIImage(systemName: "house.fill")!
+            self.tabBarItems[3].image = UIImage(systemName: "house.fill")!
         }
     }
     

@@ -16,40 +16,46 @@ enum SelectionIndicatorType: Int, CaseIterable {
 }
 
 class SelectionIndicator: UIView {
+    // MARK: -- Private variable's
+    private var actualIndex: Int = 0
+    
     // MARK: -- Public variable's
     public var indicatorBackgroundColor: UIColor = .blue
+    
     public var animationDuration: TimeInterval = 0.3
     
     public var type: SelectionIndicatorType = .square
     
+    public var centerPoint: CGPoint?
+    
     // MARK: -- Public function's
-    override func draw(_ rect: CGRect) {
+    override func didMoveToSuperview() {
         switch self.type {
         case .none:
             self.isHidden = true
         case .rectangle:
             let frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
             let rectangle = UIView(frame: frame)
-            rectangle.center.y = self.center.y
             rectangle.backgroundColor = self.indicatorBackgroundColor
             rectangle.cornerRadius = self.cornerRadius
+            rectangle.center = self.centerPoint ?? CGPoint(x: 0, y: 0)
             self.addSubview(rectangle)
         case .square:
-            let frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width)
+            let frame = CGRect(x: 0, y: 0, width: self.frame.height, height: self.frame.height)
             let square = UIView(frame: frame)
-            square.center.y = self.center.y
             square.backgroundColor = self.indicatorBackgroundColor
             square.cornerRadius = self.cornerRadius
+            square.center = self.centerPoint ?? CGPoint(x: 0, y: 0)
             self.addSubview(square)
         case .circle:
-            let frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width)
+            let frame = CGRect(x: 0, y: 0, width: self.frame.height, height: self.frame.height)
             let circle = UIView(frame: frame)
-            circle.center.y = self.center.y
             circle.backgroundColor = self.indicatorBackgroundColor
             circle.layer.cornerRadius = circle.frame.width / 2
+            circle.center = self.centerPoint ?? CGPoint(x: 0, y: 0)
             self.addSubview(circle)
         case .line:
-            let frame = CGRect(x: 0, y: self.frame.maxY - (self.frame.height * 0.1), width: self.frame.width, height: self.frame.height * 0.1)
+            let frame = CGRect(x: 0, y: 0.9 * self.frame.height, width: self.frame.width, height: self.frame.height * 0.1)
             let line = UIView(frame: frame)
             line.backgroundColor = self.indicatorBackgroundColor
             line.cornerRadius = self.cornerRadius
@@ -58,10 +64,29 @@ class SelectionIndicator: UIView {
     }
     
     public func translateAnimation(selectedIndex index: Int, spacing: CGFloat, itemsCount: Int) {
-        UIView.animate(withDuration: self.animationDuration) {
-            let translateVectorX = (self.frame.width + spacing) * CGFloat(index)
+        if index == self.actualIndex && self.actualIndex != 0 {
+            return
+        }
+        
+        let translateVectorX = (self.frame.width) * CGFloat(index) + (index >= 1 ? spacing * CGFloat(index) : 0)
+        var translateVectorXoffset = (self.frame.width + spacing) * 0.1
+        
+        let toRight = (index - self.actualIndex) >= 0 ? true : false
+        
+        if toRight == false {
+            translateVectorXoffset = -translateVectorXoffset
+        }
+        
+        UIView.animate(withDuration: self.animationDuration, delay: 0, options: .curveEaseOut) {
             self.transform = .identity
+            //self.transform = self.transform.translatedBy(x: translateVectorX + translateVectorXoffset, y: 0)
             self.transform = self.transform.translatedBy(x: translateVectorX, y: 0)
         }
+        
+        UIView.animate(withDuration: self.animationDuration, delay: self.animationDuration, options: .curveEaseOut) {
+            //self.transform = self.transform.translatedBy(x: -translateVectorXoffset, y: 0)
+        }
+        
+        self.actualIndex = index
     }
 }

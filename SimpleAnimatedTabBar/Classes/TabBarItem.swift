@@ -55,6 +55,7 @@ class TabBarItem: UIView {
     // MARK: -- Private function's
     private func setupImageView() {
         let height = self.frame.height * 0.5
+        
         self.imageView.frame = CGRect(x: 0, y: 0, width: height, height: height)
         self.imageView.center.x = self.center.x
         self.imageView.center.y = self.center.y
