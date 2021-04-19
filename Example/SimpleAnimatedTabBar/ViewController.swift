@@ -28,12 +28,30 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.simpleAnimatedTabBar.delegate = self
-        self.simpleAnimatedTabBar.selectedIndex = 2
-        self.navigationController?.navigationBar.backgroundColor = .red
+        self.simpleAnimatedTabBar.selectedIndex = 0
     }
 }
 
 extension ViewController: SimpleAnimatedTabBarDelegate {
+    func imageAndlabelForItem(_ simpleAnimatedTabBar: SimpleAnimatedTabBar, item: TabBarItem, atIndex index: Int) {
+        switch index {
+        case 0:
+            item.image = UIImage(systemName: "house") ?? UIImage()
+            item.name = "Home"
+        case 1:
+            item.image = UIImage(systemName: "camera") ?? UIImage()
+            item.name = "Camera"
+        case 2:
+            item.image = UIImage(systemName: "music.note") ?? UIImage()
+            item.name = "Music"
+        case 3:
+            item.image = UIImage(systemName: "trash") ?? UIImage()
+            item.name = "Trash"
+        default:
+            break
+        }
+    }
+    
     func simpleAnimatedTabBar(_ simpleAnimatedTabBar: SimpleAnimatedTabBar, didSelectItemAt index: Int) {
         guard index < self.viewControllers.count else {
             return

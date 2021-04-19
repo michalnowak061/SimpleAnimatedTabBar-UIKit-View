@@ -25,14 +25,14 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JNG-uF-URD" customClass="SimpleAnimatedTabBar" customModule="SimpleAnimatedTabBar">
-                                <rect key="frame" x="0.0" y="800" width="414" height="62"/>
-                                <color key="tintColor" systemColor="labelColor"/>
+                                <rect key="frame" x="0.0" y="779" width="414" height="83"/>
+                                <color key="tintColor" red="0.38008209554036243" green="1" blue="0.8307678536959906" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="JNG-uF-URD" secondAttribute="height" multiplier="200:30" id="nJO-QO-Rtj"/>
+                                    <constraint firstAttribute="width" secondItem="JNG-uF-URD" secondAttribute="height" multiplier="200:40" id="nJO-QO-Rtj"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="tabBarBackgroundColor">
-                                        <color key="value" red="0.9584286809" green="0.56015914680000001" blue="0.69572407010000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" red="0.37140857192293908" green="0.72879228809646368" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="numberOfItems">
                                         <integer key="value" value="4"/>
@@ -47,22 +47,19 @@
                                         <real key="value" value="0.29999999999999999"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="selectionIndicatorCornerRadius">
-                                        <real key="value" value="1"/>
+                                        <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="selectionIndicatorBackgroundColor">
-                                        <color key="value" red="0.94225615259999995" green="0.38578519230000002" blue="0.57169538740000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" systemColor="systemTealColor"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="selectionIndicatorType">
-                                        <integer key="value" value="4"/>
+                                        <integer key="value" value="6"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="stackViewSpacing">
                                         <integer key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="tabBarItemCornerRadius">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="tabBarItemClickAnimationType">
-                                        <integer key="value" value="3"/>
+                                        <integer key="value" value="2"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="tabBarItemAnimationDuration">
                                         <real key="value" value="0.29999999999999999"/>
@@ -212,9 +209,6 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

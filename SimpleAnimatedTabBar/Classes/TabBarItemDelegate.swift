@@ -7,6 +7,8 @@
 
 import Foundation
 
-protocol TabBarItemDelegate: class {
-    func clicked(tag: Int)
+public protocol TabBarItemDelegate: class {
+    func tabBarItem(_ tabBarItem: TabBarItem, didSelectTag tag: Int)
+    
+    func translateUp(_ tabBarItem: TabBarItem, didEnded: Bool, selectedItemTag tag: Int)
 }

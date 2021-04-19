@@ -7,14 +7,14 @@
 
 import Foundation
 
-enum TabBarItemClickAnimationType: Int {
+public enum TabBarItemClickAnimationType: Int {
     case none
     case rotation
     case flipHorizontal
     case translateUp
 }
 
-class TabBarItem: UIView {
+public class TabBarItem: UIView {
     // MARK: -- Private variable's
     private var imageView: UIImageView = UIImageView()
     
@@ -27,12 +27,19 @@ class TabBarItem: UIView {
     
     public var animationDuration: TimeInterval = 0.3
     
+    public var translateUpValue: CGFloat {
+        get {
+            return self.frame.height * 0.5
+        }
+    }
+    
     public var isSelected: Bool = false {
         didSet(newValue) {
             if newValue != self.isSelected {
                 switch isSelected {
                 case true:
                     self.translateUpAnimation()
+                    self.delegate?.translateUp(self, didEnded: true, selectedItemTag: self.tag)
                 case false:
                     self.translateDownAnimation()
                 }
@@ -59,7 +66,7 @@ class TabBarItem: UIView {
     }
     
     // MARK: -- Public function's
-    override func draw(_ rect: CGRect) {
+    public override func draw(_ rect: CGRect) {
         self.setupImageView()
         self.setupLabel()
         
@@ -75,8 +82,9 @@ class TabBarItem: UIView {
     private func setupImageView() {
         let height = self.frame.height * 0.5
         
-        self.imageView.frame = CGRect(x: 0, y: self.frame.height * 0.1, width: height, height: height)
+        self.imageView.frame = CGRect(x: 0, y: self.frame.height * 0.14, width: height, height: height)
         self.imageView.center.x = self.center.x
+        self.imageView.contentMode = .scaleAspectFit
         
         self.addSubview(self.imageView)
     }
@@ -86,7 +94,7 @@ class TabBarItem: UIView {
         let height = self.frame.height * 0.2
         
         self.label.frame = CGRect(x: 0, y: self.imageView.frame.maxY, width: width, height: height)
-        let fontSize = height / 0.8
+        let fontSize = width / 5
         self.label.font = self.label.font.withSize(fontSize)
         self.label.textAlignment = .center
         self.label.textColor = self.tintColor
@@ -106,7 +114,7 @@ class TabBarItem: UIView {
             self.isSelected = true
         }
 
-        self.delegate?.clicked(tag: self.tag)
+        self.delegate?.tabBarItem(self, didSelectTag: tag)
     }
     
     private func rotateAnimation() {
@@ -125,7 +133,7 @@ class TabBarItem: UIView {
     
     private func translateUpAnimation() {
         UIView.animate(withDuration: self.animationDuration) {
-            self.transform = self.transform.translatedBy(x: 0.0, y: -self.frame.height * 0.5)
+            self.transform = self.transform.translatedBy(x: 0.0, y: -self.translateUpValue)
         }
         UIView.animate(withDuration: self.animationDuration, delay: self.animationDuration / 4) {
             self.transform = self.transform.scaledBy(x: 1.2, y: 1.2)

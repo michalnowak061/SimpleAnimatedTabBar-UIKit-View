@@ -8,7 +8,11 @@
 import Foundation
 
 extension SimpleAnimatedTabBar: TabBarItemDelegate {
-    func clicked(tag: Int) {
+    public func tabBarItem(_ tabBarItem: TabBarItem, didSelectTag tag: Int) {
         self.selectTabBarItem(at: tag)
+    }
+    
+    public func translateUp(_ tabBarItem: TabBarItem, didEnded: Bool, selectedItemTag tag: Int) {
+        print("translateUp didEnded ", tag)
     }
 }

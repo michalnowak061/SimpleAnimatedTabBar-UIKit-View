@@ -179,6 +179,8 @@ import UIKit
             
             tabBarItem.image = UIImage(systemName: "square.fill") ?? UIImage()
             tabBarItem.name = "item"
+            
+            self.delegate?.imageAndlabelForItem(self, item: tabBarItem, atIndex: index)
         }
     }
     
@@ -225,6 +227,9 @@ import UIKit
     }
     
     public func select(at index: Int) {
+        guard index < self.tabBarItems.count else {
+            return
+        }
         self.tabBarItems[index].select(atIndex: index)
     }
     

@@ -8,5 +8,7 @@
 import Foundation
 
 public protocol SimpleAnimatedTabBarDelegate: class {
+    func imageAndlabelForItem(_ simpleAnimatedTabBar: SimpleAnimatedTabBar, item: TabBarItem, atIndex index: Int)
+    
     func simpleAnimatedTabBar(_ simpleAnimatedTabBar: SimpleAnimatedTabBar, didSelectItemAt index: Int)
 }

@@ -14,6 +14,8 @@ enum SelectionIndicatorType: Int, CaseIterable {
     case circle
     case downLine
     case upLine
+    case downDot
+    case upDot
 }
 
 class SelectionIndicator: UIView {
@@ -68,6 +70,30 @@ class SelectionIndicator: UIView {
             line.backgroundColor = self.indicatorBackgroundColor
             line.cornerRadius = self.cornerRadius
             self.addSubview(line)
+        case .downDot:
+            let width = self.frame.height / 10
+            let height = self.frame.height / 10
+            let frame = CGRect(x: 0,
+                               y: self.frame.maxY - height - (height * 0.25),
+                               width: width,
+                               height: height)
+            let dot = UIView(frame: frame)
+            dot.backgroundColor = self.indicatorBackgroundColor
+            dot.layer.cornerRadius = dot.frame.width / 2
+            dot.center.x = self.centerPoint?.x ?? 0
+            self.addSubview(dot)
+        case .upDot:
+            let width = self.frame.height / 10
+            let height = self.frame.height / 10
+            let frame = CGRect(x: 0,
+                               y: self.frame.minY + (height * 0.25),
+                               width: width,
+                               height: height)
+            let dot = UIView(frame: frame)
+            dot.backgroundColor = self.indicatorBackgroundColor
+            dot.layer.cornerRadius = dot.frame.width / 2
+            dot.center.x = self.centerPoint?.x ?? 0
+            self.addSubview(dot)
         }
     }
     
