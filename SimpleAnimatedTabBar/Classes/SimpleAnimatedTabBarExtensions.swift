@@ -13,6 +13,6 @@ extension SimpleAnimatedTabBar: TabBarItemDelegate {
     }
     
     public func translateUp(_ tabBarItem: TabBarItem, didEnded: Bool, selectedItemTag tag: Int) {
-        print("translateUp didEnded ", tag)
+        self.updateSubviewForTranslateUp(selectedItemAt: tag)
     }
 }

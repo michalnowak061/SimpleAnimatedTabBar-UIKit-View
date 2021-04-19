@@ -41,6 +41,10 @@ import UIKit
     
     private var selectionIndicator: SelectionIndicator = SelectionIndicator()
     
+    private var subviewForTranslateUp: UIView = UIView()
+    
+    private var subviewForTranslateUpIsHidden = true
+    
     // MARK: -- Private IBInspectable's
     @IBInspectable private var numberOfItems: Int = 2 {
         didSet {
@@ -193,7 +197,16 @@ import UIKit
         self.selectionIndicator.center.y = self.tabBarView.center.y
         self.selectionIndicator.centerPoint = self.stackView.arrangedSubviews[0].center
         
-        self.insertSubview(self.selectionIndicator, at: 1)
+        self.insertSubview(self.selectionIndicator, at: 2)
+    }
+    
+    private func setupSubviewForTranslateUp() {
+        let frame = CGRect(x: 0, y: 0, width: self.tabBarItemSize.width, height: self.tabBarItemSize.height)
+        self.subviewForTranslateUp = UIView(frame: frame)
+        self.subviewForTranslateUp.backgroundColor = self.tabBarView.backgroundColor
+        self.subviewForTranslateUp.cornerRadius = 40
+        
+        self.insertSubview(self.subviewForTranslateUp, at: 0)
     }
     
     // MARK: -- Public function's
@@ -216,6 +229,7 @@ import UIKit
         self.setupHorizontalStackView()
         self.setupTabBarItems()
         self.setupSelectionIndicator()
+        self.setupSubviewForTranslateUp()
     }
     
     public func releaseTabBarItems(withoutTag: Int) {
@@ -238,5 +252,37 @@ import UIKit
         self.selectionIndicator.translateAnimation(selectedIndex: index, spacing: self.stackViewSpacing, itemsCount: self.numberOfItems)
         
         self.delegate?.simpleAnimatedTabBar(self, didSelectItemAt: index)
+    }
+    
+    public func updateSubviewForTranslateUp(selectedItemAt index: Int) {
+        let selectedItemCenter = self.tabBarItems[index].center
+        let translateValue = self.frame.height * 0.5
+        let duration = TimeInterval(self.tabBarItemAnimationDuration / 2)
+                
+        switch self.subviewForTranslateUpIsHidden {
+        case true:
+            self.subviewForTranslateUp.center.x = selectedItemCenter.x + 2 * self.stackViewSpacing
+            
+            UIView.animate(withDuration: duration) {
+                self.subviewForTranslateUp.transform = self.subviewForTranslateUp.transform.translatedBy(x: 0, y: -translateValue)
+            }
+            UIView.animate(withDuration: duration, delay: duration + (duration / 2), animations: {
+                self.subviewForTranslateUp.transform = self.subviewForTranslateUp.transform.scaledBy(x: 1.2, y: 1.0)
+            }, completion: { _ in
+                self.subviewForTranslateUpIsHidden = false
+            })
+        case false:
+            UIView.animate(withDuration: duration, animations: {
+                self.subviewForTranslateUp.transform = .identity
+            }, completion: { _ in
+                self.subviewForTranslateUp.center.x = selectedItemCenter.x + 2 * self.stackViewSpacing
+            })
+            UIView.animate(withDuration: duration, delay: duration) {
+                self.subviewForTranslateUp.transform = self.subviewForTranslateUp.transform.translatedBy(x: 0, y: -translateValue)
+            }
+            UIView.animate(withDuration: duration, delay: duration + (duration / 2)) {
+                self.subviewForTranslateUp.transform = self.subviewForTranslateUp.transform.scaledBy(x: 1.2, y: 1.0)
+            }
+        }
     }
 }

@@ -28,14 +28,14 @@
                                 <rect key="frame" x="0.0" y="779" width="414" height="83"/>
                                 <color key="tintColor" red="0.38008209554036243" green="1" blue="0.8307678536959906" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="JNG-uF-URD" secondAttribute="height" multiplier="200:40" id="nJO-QO-Rtj"/>
+                                    <constraint firstAttribute="width" secondItem="JNG-uF-URD" secondAttribute="height" multiplier="200:30" id="nJO-QO-Rtj"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="tabBarBackgroundColor">
                                         <color key="value" red="0.37140857192293908" green="0.72879228809646368" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="numberOfItems">
-                                        <integer key="value" value="4"/>
+                                        <integer key="value" value="7"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="tabBarCornerRadius">
                                         <real key="value" value="0.0"/>
@@ -59,7 +59,7 @@
                                         <integer key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="tabBarItemClickAnimationType">
-                                        <integer key="value" value="2"/>
+                                        <integer key="value" value="3"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="tabBarItemAnimationDuration">
                                         <real key="value" value="0.29999999999999999"/>
