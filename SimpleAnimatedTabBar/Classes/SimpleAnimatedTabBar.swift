@@ -201,10 +201,10 @@ import UIKit
     }
     
     private func setupSubviewForTranslateUp() {
-        let frame = CGRect(x: 0, y: 0, width: self.tabBarItemSize.width, height: self.tabBarItemSize.height)
+        let frame = CGRect(x: 0, y: 0, width: self.tabBarItemSize.height, height: self.tabBarItemSize.height)
         self.subviewForTranslateUp = UIView(frame: frame)
         self.subviewForTranslateUp.backgroundColor = self.tabBarView.backgroundColor
-        self.subviewForTranslateUp.cornerRadius = 40
+        self.subviewForTranslateUp.cornerRadius = self.tabBarItemSize.height / 2
         
         self.insertSubview(self.subviewForTranslateUp, at: 0)
     }
@@ -214,6 +214,14 @@ import UIKit
         super.init(coder: aDecoder)
         
         SimpleAnimatedTabBar.instanceCounter += 1
+        
+        DispatchQueue.main.async {
+            self.setupTabBarView()
+            self.setupHorizontalStackView()
+            self.setupTabBarItems()
+            self.setupSelectionIndicator()
+            self.setupSubviewForTranslateUp()
+        }
     }
     
     override init(frame: CGRect) {
@@ -225,11 +233,7 @@ import UIKit
     }
     
     public override func draw(_ rect: CGRect) {
-        self.setupTabBarView()
-        self.setupHorizontalStackView()
-        self.setupTabBarItems()
-        self.setupSelectionIndicator()
-        self.setupSubviewForTranslateUp()
+        
     }
     
     public func releaseTabBarItems(withoutTag: Int) {

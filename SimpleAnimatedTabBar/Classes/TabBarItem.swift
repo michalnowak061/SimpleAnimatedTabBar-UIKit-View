@@ -66,12 +66,27 @@ public class TabBarItem: UIView {
     }
     
     // MARK: -- Public function's
-    public override func draw(_ rect: CGRect) {
-        self.setupImageView()
-        self.setupLabel()
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        DispatchQueue.main.async {
+            self.setupImageView()
+            self.setupLabel()
+        }
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         self.addGestureRecognizer(tap)
+    }
+    
+    deinit {
+    }
+    
+    public override func draw(_ rect: CGRect) {
+        super.draw(rect)
     }
     
     public func select(atIndex index: Int) {
@@ -82,8 +97,10 @@ public class TabBarItem: UIView {
     private func setupImageView() {
         let height = self.frame.height * 0.5
         
+        print(self.center)
+        
         self.imageView.frame = CGRect(x: 0, y: self.frame.height * 0.14, width: height, height: height)
-        self.imageView.center.x = self.center.x
+        self.imageView.center.x = self.frame.width / 2
         self.imageView.contentMode = .scaleAspectFit
         
         self.addSubview(self.imageView)

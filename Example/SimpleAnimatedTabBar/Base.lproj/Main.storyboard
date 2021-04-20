@@ -25,10 +25,10 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JNG-uF-URD" customClass="SimpleAnimatedTabBar" customModule="SimpleAnimatedTabBar">
-                                <rect key="frame" x="0.0" y="779" width="414" height="83"/>
+                                <rect key="frame" x="0.0" y="810.5" width="414" height="51.5"/>
                                 <color key="tintColor" red="0.38008209554036243" green="1" blue="0.8307678536959906" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="JNG-uF-URD" secondAttribute="height" multiplier="200:30" id="nJO-QO-Rtj"/>
+                                    <constraint firstAttribute="width" secondItem="JNG-uF-URD" secondAttribute="height" multiplier="200:25" id="nJO-QO-Rtj"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="tabBarBackgroundColor">
