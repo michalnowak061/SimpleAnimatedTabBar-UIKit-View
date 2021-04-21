@@ -28,7 +28,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.simpleAnimatedTabBar.delegate = self
-        //self.simpleAnimatedTabBar.selectedIndex = 0
+        self.simpleAnimatedTabBar.selectedIndex = 2
+    }
+    
+    @IBAction func pressed(_ sender: UIButton) {
+        self.simpleAnimatedTabBar.selectedIndex = 2
     }
 }
 

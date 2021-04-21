@@ -16,6 +16,8 @@ public enum TabBarItemClickAnimationType: Int {
 
 public class TabBarItem: UIView {
     // MARK: -- Private variable's
+    private var isPrepareForInterfaceBuilder: Bool = true
+    
     private var imageView: UIImageView = UIImageView()
     
     private var label: UILabel = UILabel()
@@ -33,10 +35,10 @@ public class TabBarItem: UIView {
         }
     }
     
-    public var isSelected: Bool = false {
+    public var isTranslatedUp: Bool = false {
         didSet(newValue) {
-            if newValue != self.isSelected {
-                switch isSelected {
+            if newValue != self.isTranslatedUp {
+                switch isTranslatedUp {
                 case true:
                     self.translateUpAnimation()
                     self.delegate?.translateUp(self, didEnded: true, selectedItemTag: self.tag)
@@ -72,14 +74,13 @@ public class TabBarItem: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        DispatchQueue.main.async {
-            self.setupImageView()
-            self.setupLabel()
-        }
-        
+
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         self.addGestureRecognizer(tap)
+    }
+    
+    public override func prepareForInterfaceBuilder() {
+        isPrepareForInterfaceBuilder = true
     }
     
     deinit {
@@ -87,6 +88,12 @@ public class TabBarItem: UIView {
     
     public override func draw(_ rect: CGRect) {
         super.draw(rect)
+        
+        if isPrepareForInterfaceBuilder {
+            self.setupViews()
+        }
+        
+        isPrepareForInterfaceBuilder = false
     }
     
     public func select(atIndex index: Int) {
@@ -94,10 +101,13 @@ public class TabBarItem: UIView {
     }
     
     // MARK: -- Private function's
+    private func setupViews() {
+        self.setupImageView()
+        self.setupLabel()
+    }
+    
     private func setupImageView() {
         let height = self.frame.height * 0.5
-        
-        print(self.center)
         
         self.imageView.frame = CGRect(x: 0, y: self.frame.height * 0.14, width: height, height: height)
         self.imageView.center.x = self.frame.width / 2
@@ -128,7 +138,7 @@ public class TabBarItem: UIView {
         case .rotation:
             self.rotateAnimation()
         case .translateUp:
-            self.isSelected = true
+            self.isTranslatedUp = true
         }
 
         self.delegate?.tabBarItem(self, didSelectTag: tag)

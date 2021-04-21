@@ -17,7 +17,7 @@ import UIKit
         get {
             return self.selectionIndicator.actualIndex
         }
-        set {
+        set(newValue) {
             DispatchQueue.main.async {
                 self.select(at: newValue)
             }
@@ -25,6 +25,8 @@ import UIKit
     }
     
     // MARK: -- Private variable's
+    private var isPrepareForInterfaceBuilder: Bool = true
+    
     private var tabBarView: UIView = UIView()
     
     private var stackView: UIStackView = UIStackView()
@@ -46,7 +48,7 @@ import UIKit
     private var subviewForTranslateUpIsHidden = true
     
     // MARK: -- Private IBInspectable's
-    @IBInspectable private var numberOfItems: Int = 2 {
+    @IBInspectable private var numberOfItems: Int = 0 {
         didSet {
             self.tabBarItems.removeAll()
             
@@ -175,6 +177,10 @@ import UIKit
     }
     
     private func setupTabBarItems() {
+        guard self.numberOfItems == self.tabBarItems.count else {
+            return
+        }
+        
         for index in 0 ..< self.numberOfItems {
             let tabBarItem = self.tabBarItems[index]
             let tabBarItemSize = self.tabBarItemSize
@@ -209,19 +215,19 @@ import UIKit
         self.insertSubview(self.subviewForTranslateUp, at: 0)
     }
     
+    private func setupViews() {
+        self.setupTabBarView()
+        self.setupHorizontalStackView()
+        self.setupTabBarItems()
+        self.setupSelectionIndicator()
+        self.setupSubviewForTranslateUp()
+    }
+    
     // MARK: -- Public function's
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         SimpleAnimatedTabBar.instanceCounter += 1
-        
-        DispatchQueue.main.async {
-            self.setupTabBarView()
-            self.setupHorizontalStackView()
-            self.setupTabBarItems()
-            self.setupSelectionIndicator()
-            self.setupSubviewForTranslateUp()
-        }
     }
     
     override init(frame: CGRect) {
@@ -233,13 +239,19 @@ import UIKit
     }
     
     public override func draw(_ rect: CGRect) {
+        super.draw(rect)
+    
+        if isPrepareForInterfaceBuilder {
+            self.setupViews()
+        }
         
+        isPrepareForInterfaceBuilder = false
     }
     
     public func releaseTabBarItems(withoutTag: Int) {
         _ = self.tabBarItems.map {
             if $0.tag != withoutTag {
-                $0.isSelected = false
+                $0.isTranslatedUp = false
             }
         }
     }
@@ -254,7 +266,7 @@ import UIKit
     public func selectTabBarItem(at index: Int) {
         self.releaseTabBarItems(withoutTag: index)
         self.selectionIndicator.translateAnimation(selectedIndex: index, spacing: self.stackViewSpacing, itemsCount: self.numberOfItems)
-        
+
         self.delegate?.simpleAnimatedTabBar(self, didSelectItemAt: index)
     }
     
