@@ -104,6 +104,8 @@ public class TabBarItem: UIView {
     private func setupViews() {
         self.setupImageView()
         self.setupLabel()
+        
+        self.resizeImageViewIfLabelIsEmpty()
     }
     
     private func setupImageView() {
@@ -141,6 +143,13 @@ public class TabBarItem: UIView {
             self.isTranslatedUp = true
         }
         self.delegate?.tabBarItem(self, didSelectTag: tag)
+    }
+    
+    private func resizeImageViewIfLabelIsEmpty() {
+        if self.label.text?.isEmpty ?? true {
+            self.imageView.transform = self.imageView.transform.scaledBy(x: 1.8, y: 1.8)
+            self.imageView.center.y = self.center.y
+        }
     }
     
     private func rotateAnimation() {

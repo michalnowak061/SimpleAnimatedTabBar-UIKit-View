@@ -194,7 +194,7 @@ import UIKit
             tabBarItem.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: tabBarItemSize)
             
             tabBarItem.image = UIImage(systemName: "square.fill") ?? UIImage()
-            tabBarItem.name = "item"
+            //tabBarItem.name = "item"
             
             self.delegate?.imageAndlabelForItem(self, item: tabBarItem, atIndex: index)
         }

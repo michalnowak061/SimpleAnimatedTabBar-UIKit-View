@@ -30,10 +30,6 @@ class ViewController: UIViewController {
         self.simpleAnimatedTabBar.delegate = self
         self.simpleAnimatedTabBar.selectedIndex = 2
     }
-    
-    @IBAction func pressed(_ sender: UIButton) {
-        self.simpleAnimatedTabBar.selectedIndex = 2
-    }
 }
 
 extension ViewController: SimpleAnimatedTabBarDelegate {

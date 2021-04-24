@@ -22,20 +22,10 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vee-Jb-ghq">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eCc-sb-yI4">
-                                        <rect key="frame" x="184" y="433" width="46" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
-                                        <connections>
-                                            <action selector="pressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="d76-0t-EzG"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JNG-uF-URD" customClass="SimpleAnimatedTabBar" customModule="SimpleAnimatedTabBar">
-                                <rect key="frame" x="0.0" y="800" width="414" height="62"/>
+                                <rect key="frame" x="20" y="806" width="374" height="56"/>
                                 <color key="tintColor" red="0.38008209554036243" green="1" blue="0.8307678536959906" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="JNG-uF-URD" secondAttribute="height" multiplier="200:30" id="nJO-QO-Rtj"/>
@@ -45,7 +35,7 @@
                                         <integer key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="tabBarCornerRadius">
-                                        <real key="value" value="0.0"/>
+                                        <integer key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="selectionIndicatorAlpha">
                                         <real key="value" value="2"/>
@@ -54,13 +44,13 @@
                                         <real key="value" value="0.29999999999999999"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="selectionIndicatorCornerRadius">
-                                        <real key="value" value="10"/>
+                                        <integer key="value" value="0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="selectionIndicatorBackgroundColor">
                                         <color key="value" systemColor="systemYellowColor"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="selectionIndicatorType">
-                                        <integer key="value" value="3"/>
+                                        <integer key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="stackViewSpacing">
                                         <integer key="value" value="10"/>
@@ -78,7 +68,7 @@
                                         <color key="value" red="0.68885803734630768" green="0.76970639046347933" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="selectionIndicatorAnimationType">
-                                        <integer key="value" value="2"/>
+                                        <integer key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -86,12 +76,12 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="JNG-uF-URD" secondAttribute="bottom" id="0m6-Ky-sF9"/>
-                            <constraint firstItem="JNG-uF-URD" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="5dd-Lf-t4i"/>
+                            <constraint firstAttribute="trailing" secondItem="JNG-uF-URD" secondAttribute="trailing" constant="20" id="3ir-C6-ffn"/>
                             <constraint firstItem="vee-Jb-ghq" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="AhD-pX-2TF"/>
                             <constraint firstAttribute="bottom" secondItem="vee-Jb-ghq" secondAttribute="bottom" id="RhB-oR-A4X"/>
-                            <constraint firstAttribute="trailing" secondItem="JNG-uF-URD" secondAttribute="trailing" id="Vpq-40-yWx"/>
                             <constraint firstAttribute="trailing" secondItem="vee-Jb-ghq" secondAttribute="trailing" id="dJR-lI-DrT"/>
                             <constraint firstItem="vee-Jb-ghq" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="ovA-s7-GVt"/>
+                            <constraint firstItem="JNG-uF-URD" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="vzN-jf-ptK"/>
                         </constraints>
                     </view>
                     <connections>
