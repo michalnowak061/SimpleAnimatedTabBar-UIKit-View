@@ -60,7 +60,6 @@ extension ViewController: SimpleAnimatedTabBarDelegate {
         guard index < self.viewControllers.count else {
             return
         }
-        
         self.viewForViewControllers.addSubview(self.viewControllers[index].view)
     }
 }

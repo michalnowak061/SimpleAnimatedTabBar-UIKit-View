@@ -125,6 +125,12 @@ import UIKit
         }
     }
     
+    @IBInspectable private var selectionIndicatorAnimationType: Int = SelectionIndicatorAnimationType.translation.rawValue {
+        didSet {
+            self.selectionIndicator.animationType = SelectionIndicatorAnimationType(rawValue: self.selectionIndicatorAnimationType) ?? SelectionIndicatorAnimationType.none
+        }
+    }
+    
     @IBInspectable private var selectionIndicatorBackgroundColor: UIColor = .cyan {
         didSet {
             self.selectionIndicator.indicatorBackgroundColor = self.selectionIndicatorBackgroundColor
@@ -203,7 +209,7 @@ import UIKit
         self.selectionIndicator.center.y = self.tabBarView.center.y
         self.selectionIndicator.centerPoint = self.stackView.arrangedSubviews[0].center
         
-        self.insertSubview(self.selectionIndicator, at: 2)
+        self.insertSubview(self.selectionIndicator, at: 1)
     }
     
     private func setupSubviewForTranslateUp() {
@@ -265,7 +271,7 @@ import UIKit
     
     public func selectTabBarItem(at index: Int) {
         self.releaseTabBarItems(withoutTag: index)
-        self.selectionIndicator.translateAnimation(selectedIndex: index, spacing: self.stackViewSpacing, itemsCount: self.numberOfItems)
+        self.selectionIndicator.animate(selectedIndex: index, spacing: self.stackViewSpacing, itemsCount: self.numberOfItems)
 
         self.delegate?.simpleAnimatedTabBar(self, didSelectItemAt: index)
     }

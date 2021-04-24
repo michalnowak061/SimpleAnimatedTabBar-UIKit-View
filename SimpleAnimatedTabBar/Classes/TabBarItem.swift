@@ -8,10 +8,10 @@
 import Foundation
 
 public enum TabBarItemClickAnimationType: Int {
-    case none
-    case rotation
-    case flipHorizontal
-    case translateUp
+    case none           = 0
+    case rotation       = 1
+    case flipHorizontal = 2
+    case translateUp    = 3
 }
 
 public class TabBarItem: UIView {
@@ -107,9 +107,9 @@ public class TabBarItem: UIView {
     }
     
     private func setupImageView() {
-        let height = self.frame.height * 0.5
+        let height = self.frame.height * 0.4
         
-        self.imageView.frame = CGRect(x: 0, y: self.frame.height * 0.14, width: height, height: height)
+        self.imageView.frame = CGRect(x: 0, y: self.frame.height * 0.2, width: height, height: height)
         self.imageView.center.x = self.frame.width / 2
         self.imageView.contentMode = .scaleAspectFit
         
@@ -121,7 +121,7 @@ public class TabBarItem: UIView {
         let height = self.frame.height * 0.2
         
         self.label.frame = CGRect(x: 0, y: self.imageView.frame.maxY, width: width, height: height)
-        let fontSize = width / 5
+        let fontSize = height
         self.label.font = self.label.font.withSize(fontSize)
         self.label.textAlignment = .center
         self.label.textColor = self.tintColor
@@ -140,7 +140,6 @@ public class TabBarItem: UIView {
         case .translateUp:
             self.isTranslatedUp = true
         }
-
         self.delegate?.tabBarItem(self, didSelectTag: tag)
     }
     

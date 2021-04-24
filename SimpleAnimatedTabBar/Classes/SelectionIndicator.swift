@@ -18,6 +18,12 @@ enum SelectionIndicatorType: Int, CaseIterable {
     case upDot
 }
 
+enum SelectionIndicatorAnimationType: Int, CaseIterable {
+    case none
+    case translation
+    case blink
+}
+
 class SelectionIndicator: UIView {
     // MARK: -- Private variable's
     
@@ -27,6 +33,8 @@ class SelectionIndicator: UIView {
     public var animationDuration: TimeInterval = 0.3
     
     public var type: SelectionIndicatorType = .square
+    
+    public var animationType: SelectionIndicatorAnimationType = .translation
     
     public var centerPoint: CGPoint?
     
@@ -74,7 +82,7 @@ class SelectionIndicator: UIView {
             let width = self.frame.height / 10
             let height = self.frame.height / 10
             let frame = CGRect(x: 0,
-                               y: self.frame.maxY - height - (height * 0.25),
+                               y: self.frame.maxY - height - (height * 0.4),
                                width: width,
                                height: height)
             let dot = UIView(frame: frame)
@@ -86,7 +94,7 @@ class SelectionIndicator: UIView {
             let width = self.frame.height / 10
             let height = self.frame.height / 10
             let frame = CGRect(x: 0,
-                               y: self.frame.minY + (height * 0.25),
+                               y: self.frame.minY + (height * 0.4),
                                width: width,
                                height: height)
             let dot = UIView(frame: frame)
@@ -97,7 +105,21 @@ class SelectionIndicator: UIView {
         }
     }
     
-    public func translateAnimation(selectedIndex index: Int, spacing: CGFloat, itemsCount: Int) {
+    public func animate(selectedIndex index: Int, spacing: CGFloat, itemsCount: Int) {
+        switch self.animationType {
+        case .none:
+            self.translate(withDuration: 0, selectedIndex: index, spacing: spacing, itemsCount: itemsCount)
+        case .translation:
+            self.translateAnimation(selectedIndex: index, spacing: spacing, itemsCount: itemsCount)
+        case .blink:
+            self.blinkAnimation(selectedIndex: index, spacing: spacing, itemsCount: itemsCount)
+        }
+        
+        self.actualIndex = index
+    }
+    
+    // MARK: -- Private function's
+    private func translate(withDuration duration: TimeInterval, selectedIndex index: Int, spacing: CGFloat, itemsCount: Int) {
         if index == self.actualIndex {
             return
         }
@@ -111,15 +133,31 @@ class SelectionIndicator: UIView {
             translateVectorXoffset = -translateVectorXoffset
         }
         
-        UIView.animate(withDuration: self.animationDuration, delay: 0, options: .curveEaseOut) {
+        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut) {
             self.transform = .identity
             self.transform = self.transform.translatedBy(x: translateVectorX + translateVectorXoffset, y: 0)
         }
         
-        UIView.animate(withDuration: self.animationDuration, delay: self.animationDuration, options: .curveEaseOut) {
+        UIView.animate(withDuration: duration, delay: duration, options: .curveEaseOut) {
             self.transform = self.transform.translatedBy(x: -translateVectorXoffset, y: 0)
         }
+    }
+    
+    private func translateAnimation(selectedIndex index: Int, spacing: CGFloat, itemsCount: Int) {
+        self.translate(withDuration: self.animationDuration, selectedIndex: index, spacing: spacing, itemsCount: itemsCount)
+    }
+    
+    private func blinkAnimation(selectedIndex index: Int, spacing: CGFloat, itemsCount: Int) {
+        self.translate(withDuration: 0, selectedIndex: index, spacing: spacing, itemsCount: itemsCount)
         
-        self.actualIndex = index
+        self.alpha = 0
+        
+        UIView.animate(withDuration: self.animationDuration / 2) {
+            self.alpha = 1
+        }
+        
+        UIView.animate(withDuration: self.animationDuration, delay: self.animationDuration / 2) {
+            self.alpha = 0
+        }
     }
 }
