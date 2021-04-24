@@ -9,10 +9,14 @@ import Foundation
 
 extension SimpleAnimatedTabBar: TabBarItemDelegate {
     public func tabBarItem(_ tabBarItem: TabBarItem, didSelectTag tag: Int) {
-        self.selectTabBarItem(at: tag)
+        DispatchQueue.main.async {
+            self.selectTabBarItem(at: tag)
+        }
     }
     
     public func translateUp(_ tabBarItem: TabBarItem, didEnded: Bool, selectedItemTag tag: Int) {
-        self.updateSubviewForTranslateUp(selectedItemAt: tag)
+        DispatchQueue.main.async {
+            self.updateSubviewForTranslateUp(selectedItemAt: tag)
+        }
     }
 }
