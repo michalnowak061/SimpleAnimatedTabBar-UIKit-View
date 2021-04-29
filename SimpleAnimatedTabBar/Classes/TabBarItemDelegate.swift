@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol TabBarItemDelegate: class {
+public protocol TabBarItemDelegate: AnyObject {
     func tabBarItem(_ tabBarItem: TabBarItem, didSelectTag tag: Int)
     
     func translateUp(_ tabBarItem: TabBarItem, didEnded: Bool, selectedItemTag tag: Int)

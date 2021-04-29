@@ -18,7 +18,9 @@ import UIKit
             return self.selectionIndicator.actualIndex
         }
         set(newValue) {
-            self.select(at: newValue)
+            DispatchQueue.main.async {
+                self.select(at: newValue)
+            }
         }
     }
     
