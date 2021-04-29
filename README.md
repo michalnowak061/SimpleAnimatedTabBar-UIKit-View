@@ -26,6 +26,17 @@
   <img src="Assets/SelectionIndicator/selectionIndicatorType/7.png" {:height="12%" width="12%"} /> 
 </p>
 
+## Selection indicator types
+
+- None
+- Translate
+- Blink
+
+<p align="center"> 
+  <img src="Assets/SelectionIndicator/selectionIndicatorAnimationType/1.gif" {:height="12%" width="12%"} />
+  <img src="Assets/SelectionIndicator/selectionIndicatorAnimationType/2.gif" {:height="12%" width="12%"} />
+</p>
+
 ## Tab bar item click animation types
 
 - None
