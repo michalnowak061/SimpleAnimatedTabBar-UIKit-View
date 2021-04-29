@@ -7,14 +7,36 @@
 
 ## Selection indicator types
 
+- None
+- Rectangle
+- Square
+- Circle
+- Down line
+- Up line
+- Down dot
+- Up dot
+
 <p align="center"> 
-  <img src="Assets/SelectionIndicator/selectionIndicatorType/1.png" {:height="20%" width="20%"} />
-  <img src="Assets/SelectionIndicator/selectionIndicatorType/2.png" {:height="20%" width="20%"} />
-  <img src="Assets/SelectionIndicator/selectionIndicatorType/3.png" {:height="20%" width="20%"} />
-  <img src="Assets/SelectionIndicator/selectionIndicatorType/4.png" {:height="20%" width="20%"} />
-  <img src="Assets/SelectionIndicator/selectionIndicatorType/5.png" {:height="20%" width="20%"} />
-  <img src="Assets/SelectionIndicator/selectionIndicatorType/6.png" {:height="20%" width="20%"} />
-  <img src="Assets/SelectionIndicator/selectionIndicatorType/7.png" {:height="20%" width="20%"} /> 
+  <img src="Assets/SelectionIndicator/selectionIndicatorType/1.png" {:height="12%" width="12%"} />
+  <img src="Assets/SelectionIndicator/selectionIndicatorType/2.png" {:height="12%" width="12%"} />
+  <img src="Assets/SelectionIndicator/selectionIndicatorType/3.png" {:height="12%" width="12%"} />
+  <img src="Assets/SelectionIndicator/selectionIndicatorType/4.png" {:height="12%" width="12%"} />
+  <img src="Assets/SelectionIndicator/selectionIndicatorType/5.png" {:height="12%" width="12%"} />
+  <img src="Assets/SelectionIndicator/selectionIndicatorType/6.png" {:height="12%" width="12%"} />
+  <img src="Assets/SelectionIndicator/selectionIndicatorType/7.png" {:height="12%" width="12%"} /> 
+</p>
+
+## Tab bar item click animation types
+
+- None
+- Rotate
+- Flip horizontal
+- Translate up
+
+<p align="center"> 
+  <img src="Assets/TabBarItem/tabBarItemClickAnimationType/1.gif" {:height="12%" width="12%"} />
+  <img src="Assets/TabBarItem/tabBarItemClickAnimationType/2.gif" {:height="12%" width="12%"} />
+  <img src="Assets/TabBarItem/tabBarItemClickAnimationType/3.gif" {:height="12%" width="12%"} />
 </p>
 
 ## Example
