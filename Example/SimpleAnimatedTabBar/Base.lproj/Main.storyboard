@@ -20,15 +20,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vee-Jb-ghq">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JNG-uF-URD" customClass="SimpleAnimatedTabBar" customModule="SimpleAnimatedTabBar">
-                                <rect key="frame" x="20" y="806" width="374" height="56"/>
-                                <color key="tintColor" red="0.38008209554036243" green="1" blue="0.8307678536959906" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="20" y="812" width="374" height="50"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="JNG-uF-URD" secondAttribute="height" multiplier="200:30" id="nJO-QO-Rtj"/>
+                                    <constraint firstAttribute="height" constant="50" id="xMb-aD-aCn"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="numberOfItems">
@@ -38,7 +34,7 @@
                                         <integer key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="selectionIndicatorAlpha">
-                                        <real key="value" value="2"/>
+                                        <integer key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="selectionIndicatorAnimationDuration">
                                         <real key="value" value="0.29999999999999999"/>
@@ -47,16 +43,16 @@
                                         <integer key="value" value="0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="selectionIndicatorBackgroundColor">
-                                        <color key="value" red="0.63309794240630535" green="0.54614907242731237" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" systemColor="systemYellowColor"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="selectionIndicatorType">
-                                        <integer key="value" value="4"/>
+                                        <integer key="value" value="6"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="stackViewSpacing">
                                         <integer key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="tabBarItemClickAnimationType">
-                                        <integer key="value" value="0"/>
+                                        <integer key="value" value="3"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="tabBarItemAnimationDuration">
                                         <real key="value" value="0.29999999999999999"/>
@@ -65,10 +61,10 @@
                                         <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="tabBarBackgroundColor">
-                                        <color key="value" red="0.68885803734630768" green="0.76970639046347933" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" red="0.68885803729999995" green="0.7697063905" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="selectionIndicatorAnimationType">
-                                        <integer key="value" value="3"/>
+                                        <integer key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -77,16 +73,11 @@
                         <constraints>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="JNG-uF-URD" secondAttribute="bottom" id="0m6-Ky-sF9"/>
                             <constraint firstAttribute="trailing" secondItem="JNG-uF-URD" secondAttribute="trailing" constant="20" id="3ir-C6-ffn"/>
-                            <constraint firstItem="vee-Jb-ghq" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="AhD-pX-2TF"/>
-                            <constraint firstAttribute="bottom" secondItem="vee-Jb-ghq" secondAttribute="bottom" id="RhB-oR-A4X"/>
-                            <constraint firstAttribute="trailing" secondItem="vee-Jb-ghq" secondAttribute="trailing" id="dJR-lI-DrT"/>
-                            <constraint firstItem="vee-Jb-ghq" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="ovA-s7-GVt"/>
                             <constraint firstItem="JNG-uF-URD" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="vzN-jf-ptK"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="simpleAnimatedTabBar" destination="JNG-uF-URD" id="ZTb-cB-NEh"/>
-                        <outlet property="viewForViewControllers" destination="vee-Jb-ghq" id="BH0-xJ-lLC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -215,9 +206,6 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
@@ -229,6 +217,9 @@
         </systemColor>
         <systemColor name="systemTealColor">
             <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

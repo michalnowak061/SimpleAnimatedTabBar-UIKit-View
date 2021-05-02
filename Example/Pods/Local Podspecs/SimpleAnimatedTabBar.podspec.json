@@ -1,6 +1,6 @@
 {
   "name": "SimpleAnimatedTabBar",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "summary": "My short description of SimpleAnimatedTabBar.",
   "description": "My long long long description of SimpleAnimatedTabBar.",
   "homepage": "https://github.com/michalnowak061/SimpleAnimatedTabBar",
@@ -13,12 +13,18 @@
   },
   "source": {
     "git": "https://github.com/michalnowak061/SimpleAnimatedTabBar.git",
-    "tag": "0.1.0"
+    "tag": "0.1.2"
   },
   "swift_versions": "5.0",
   "platforms": {
     "ios": "13.0"
   },
   "source_files": "SimpleAnimatedTabBar/Classes/**/*",
+  "frameworks": "UIKit",
+  "dependencies": {
+    "SnapKit": [
+      "~> 5.0.0"
+    ]
+  },
   "swift_version": "5.0"
 }

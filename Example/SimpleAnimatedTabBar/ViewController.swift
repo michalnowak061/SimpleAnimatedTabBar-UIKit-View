@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     // MARK: -- IBOutlet's
     @IBOutlet weak var simpleAnimatedTabBar: SimpleAnimatedTabBar!
     
-    @IBOutlet weak var viewForViewControllers: UIView!
+    private var actualView: UIView?
     
     // MARK: -- Override's
     override func viewDidLoad() {
@@ -56,6 +56,11 @@ extension ViewController: SimpleAnimatedTabBarDelegate {
         guard index < self.viewControllers.count else {
             return
         }
-        self.viewForViewControllers.addSubview(self.viewControllers[index].view)
+        self.actualView?.removeFromSuperview()
+        self.actualView = self.viewControllers[index].view
+        self.view.insertSubview(self.actualView!, at: 0)
+        self.actualView?.snp.makeConstraints{ make in
+            make.width.height.equalToSuperview()
+        }
     }
 }
