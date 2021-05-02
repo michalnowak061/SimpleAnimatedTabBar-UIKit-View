@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 @IBDesignable public class SimpleAnimatedTabBar: UIView, InstanceCountable {
     // MARK: -- Public variable's
@@ -24,8 +25,28 @@ import UIKit
         }
     }
     
+    override public func layoutMarginsDidChange() {
+        if !self.firstSelection {
+            DispatchQueue.main.async {
+                let selectedIdx = self.selectedIndex
+                self.selectionIndicator.animate(selectedIndex: 0, spacing: self.stackViewSpacing, itemsCount: self.numberOfItems)
+                self.selectionIndicator.animate(selectedIndex: selectedIdx, spacing: self.stackViewSpacing, itemsCount: self.numberOfItems)
+                self.releaseAllTabBarItems()
+                self.tabBarItems[selectedIdx].isTranslatedUp = true
+            }
+        }
+    }
+    
+    override public func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.subviewForTranslateUp.cornerRadius = self.tabBarItemSize.height / 2.0
+    }
+
     // MARK: -- Private variable's
     private var isPrepareForInterfaceBuilder: Bool = true
+    
+    private var firstSelection: Bool = true
     
     private var tabBarView: UIView = UIView()
     
@@ -35,8 +56,8 @@ import UIKit
     
     private var tabBarItemSize: CGSize {
         get {
-            let width = (self.stackView.frame.width - (CGFloat(self.numberOfItems - 1) * self.stackViewSpacing)) / CGFloat(self.numberOfItems)
-            let height = self.stackView.frame.height
+            let width = ((self.frame.width - (2 * self.frame.width * 0.1)) - (CGFloat(self.numberOfItems - 1) * self.stackViewSpacing)) / CGFloat(self.numberOfItems)
+            let height = self.frame.height
             return CGSize(width: width, height: height)
         }
     }
@@ -156,30 +177,26 @@ import UIKit
     }
     
     // MARK: -- Private function's
-    private func setupTabBarView() {
-        let tabBarViewWidth = self.frame.width * 1.0
-        let tabBarViewHeight = self.frame.height * 1.0
-        
-        self.tabBarView.frame = CGRect(x: 0, y: 0, width: tabBarViewWidth, height: tabBarViewHeight)
-        self.tabBarView.center.x = self.frame.width / 2
-        self.tabBarView.center.y = self.frame.height / 2
-        
+    private func setupTabBarView() {        
         self.addSubview(self.tabBarView)
+        self.tabBarView.snp.makeConstraints { make in
+            make.width.height.equalToSuperview()
+            make.center.equalToSuperview()
+        }
     }
     
     private func setupHorizontalStackView() {
-        let horizontalStackViewWidth = self.tabBarView.frame.width * 0.9
-        let horizontalStackViewHeight = self.tabBarView.frame.height * 1.0
-        
-        self.stackView.frame = CGRect(x: 0, y: 0, width: horizontalStackViewWidth, height: horizontalStackViewHeight)
-        self.stackView.center.x = self.frame.width / 2
-        self.stackView.center.y = self.frame.height / 2
-        
         self.stackView.axis = .horizontal
         self.stackView.distribution = .fillEqually
         self.stackView.alignment = .fill
         
+        self.stackView.removeFromSuperview()
         self.addSubview(self.stackView)
+        self.stackView.snp.makeConstraints { make in
+            make.width.equalToSuperview().multipliedBy(0.8)
+            make.height.equalToSuperview()
+            make.center.equalToSuperview()
+        }
     }
     
     private func setupTabBarItems() {
@@ -201,24 +218,29 @@ import UIKit
     }
     
     private func setupSelectionIndicator() {
-        let selectionIndicatorWidth = self.tabBarItemSize.width
-        let selectionIndicatorHeight = self.stackView.frame.height
-        
-        let selectionIndicatorFrame = CGRect(x: self.stackView.frame.minX, y: 0, width: selectionIndicatorWidth, height: selectionIndicatorHeight)
-        self.selectionIndicator.frame = selectionIndicatorFrame
-        self.selectionIndicator.center.y = self.tabBarView.center.y
-        self.selectionIndicator.centerPoint = self.stackView.arrangedSubviews[0].center
-        
+        self.selectionIndicator.removeFromSuperview()
         self.insertSubview(self.selectionIndicator, at: 1)
+        self.selectionIndicator.snp.removeConstraints()
+        self.selectionIndicator.snp.makeConstraints { make in
+            make.width.equalTo(self.tabBarItems[0].snp.width)
+            make.height.equalToSuperview()
+            make.center.equalTo(self.tabBarItems[0].snp.center)
+        }
+        
+        self.selectionIndicator.size = CGSize(width: self.tabBarItemSize.width, height: self.frame.height)
     }
     
-    private func setupSubviewForTranslateUp() {
-        let frame = CGRect(x: 0, y: 0, width: self.tabBarItemSize.height, height: self.tabBarItemSize.height)
-        self.subviewForTranslateUp = UIView(frame: frame)
-        self.subviewForTranslateUp.backgroundColor = self.tabBarView.backgroundColor
-        self.subviewForTranslateUp.cornerRadius = self.tabBarItemSize.height / 2
-        
+    private func setupSubviewForTranslateUp(atIndex index: Int) {
+        self.subviewForTranslateUp.removeFromSuperview()
         self.insertSubview(self.subviewForTranslateUp, at: 0)
+        self.subviewForTranslateUp.snp.removeConstraints()
+        self.subviewForTranslateUp.snp.makeConstraints { make in
+            make.width.equalTo(self.stackView.arrangedSubviews[index].snp.height)
+            make.height.equalTo(self.stackView.arrangedSubviews[index].snp.height)
+            make.center.equalTo(self.stackView.arrangedSubviews[index].snp.center)
+        }
+        
+        self.subviewForTranslateUp.backgroundColor = self.tabBarView.backgroundColor
     }
     
     private func setupViews() {
@@ -226,7 +248,6 @@ import UIKit
         self.setupHorizontalStackView()
         self.setupTabBarItems()
         self.setupSelectionIndicator()
-        self.setupSubviewForTranslateUp()
     }
     
     // MARK: -- Public function's
@@ -254,6 +275,12 @@ import UIKit
         isPrepareForInterfaceBuilder = false
     }
     
+    public func releaseAllTabBarItems() {
+        _ = self.tabBarItems.map {
+            $0.isTranslatedUp = false
+        }
+    }
+    
     public func releaseTabBarItems(withoutTag: Int) {
         _ = self.tabBarItems.map {
             if $0.tag != withoutTag {
@@ -270,34 +297,37 @@ import UIKit
     }
     
     public func selectTabBarItem(at index: Int) {
+        if firstSelection {
+            self.selectionIndicator.animationDuration = 0
+            self.firstSelection = false
+        } else {
+            self.selectionIndicator.animationDuration = TimeInterval(self.selectionIndicatorAnimationDuration)
+        }
+        
         self.releaseTabBarItems(withoutTag: index)
         self.selectionIndicator.animate(selectedIndex: index, spacing: self.stackViewSpacing, itemsCount: self.numberOfItems)
-
-        self.delegate?.simpleAnimatedTabBar(self, didSelectItemAt: index)
     }
     
     public func updateSubviewForTranslateUp(selectedItemAt index: Int) {
-        let selectedItemCenter = self.tabBarItems[index].center
         let translateValue = self.frame.height * 0.5
         let duration = TimeInterval(self.tabBarItemAnimationDuration / 2)
-                
+        
         switch self.subviewForTranslateUpIsHidden {
         case true:
-            self.subviewForTranslateUp.center.x = selectedItemCenter.x + 2 * self.stackViewSpacing
-            
             UIView.animate(withDuration: duration) {
                 self.subviewForTranslateUp.transform = self.subviewForTranslateUp.transform.translatedBy(x: 0, y: -translateValue)
             }
             UIView.animate(withDuration: duration, delay: duration + (duration / 2), animations: {
                 self.subviewForTranslateUp.transform = self.subviewForTranslateUp.transform.scaledBy(x: 1.2, y: 1.0)
             }, completion: { _ in
+                self.setupSubviewForTranslateUp(atIndex: index)
                 self.subviewForTranslateUpIsHidden = false
             })
         case false:
             UIView.animate(withDuration: duration, animations: {
                 self.subviewForTranslateUp.transform = .identity
             }, completion: { _ in
-                self.subviewForTranslateUp.center.x = selectedItemCenter.x + 2 * self.stackViewSpacing
+                self.setupSubviewForTranslateUp(atIndex: index)
             })
             UIView.animate(withDuration: duration, delay: duration) {
                 self.subviewForTranslateUp.transform = self.subviewForTranslateUp.transform.translatedBy(x: 0, y: -translateValue)

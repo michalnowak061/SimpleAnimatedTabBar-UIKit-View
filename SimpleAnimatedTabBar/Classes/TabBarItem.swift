@@ -15,12 +15,19 @@ public enum TabBarItemClickAnimationType: Int {
 }
 
 public class TabBarItem: UIView {
+    // MARK: -- Private parameter's
+    private let labelFontSizeScaleFactor: CGFloat = 0.15
+    
     // MARK: -- Private variable's
     private var isPrepareForInterfaceBuilder: Bool = true
+    
+    private var view: UIView = UIView()
     
     private var imageView: UIImageView = UIImageView()
     
     private var label: UILabel = UILabel()
+    
+    private var delegateMute: Bool = false
     
     // MARK: -- Public variable's
     public weak var delegate: TabBarItemDelegate?
@@ -67,6 +74,13 @@ public class TabBarItem: UIView {
         }
     }
     
+    override public var bounds: CGRect {
+        didSet {
+            let fontSize = self.frame.height * self.labelFontSizeScaleFactor
+            self.label.font = self.label.font.withSize(fontSize)
+        }
+    }
+    
     // MARK: -- Public function's
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -96,39 +110,53 @@ public class TabBarItem: UIView {
         isPrepareForInterfaceBuilder = false
     }
     
-    public func select(atIndex index: Int) {
+    public func select(atIndex index: Int, delegateMute: Bool = false) {
         self.handleTap()
+        self.delegateMute = delegateMute
     }
     
     // MARK: -- Private function's
     private func setupViews() {
-        self.setupImageView()
-        self.setupLabel()
-        
+        self.setupView()
         self.resizeImageViewIfLabelIsEmpty()
     }
     
-    private func setupImageView() {
-        let height = self.frame.height * 0.4
+    private func setupView() {
+        self.addSubview(self.view)
+        self.view.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+            make.height.equalToSuperview().multipliedBy(0.6)
+            make.center.equalToSuperview()
+        }
         
-        self.imageView.frame = CGRect(x: 0, y: self.frame.height * 0.2, width: height, height: height)
-        self.imageView.center.x = self.frame.width / 2
+        self.setupImageView()
+        self.setupLabel()
+    }
+    
+    private func setupImageView() {
         self.imageView.contentMode = .scaleAspectFit
         
-        self.addSubview(self.imageView)
+        self.view.addSubview(self.imageView)
+        self.imageView.snp.makeConstraints { make in
+            make.height.equalToSuperview().multipliedBy(0.8)
+            make.width.equalToSuperview()
+            make.top.equalToSuperview()
+            make.centerX.equalToSuperview()
+        }
     }
     
     private func setupLabel() {
-        let width = self.frame.width
-        let height = self.frame.height * 0.2
-        
-        self.label.frame = CGRect(x: 0, y: self.imageView.frame.maxY, width: width, height: height)
-        let fontSize = height
+        let fontSize = self.frame.height * self.labelFontSizeScaleFactor
         self.label.font = self.label.font.withSize(fontSize)
         self.label.textAlignment = .center
         self.label.textColor = self.tintColor
         
-        self.addSubview(self.label)
+        self.view.addSubview(self.label)
+        self.label.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+            make.height.equalToSuperview().multipliedBy(0.2)
+            make.top.equalTo(self.imageView.snp.bottom)
+        }
     }
     
     @objc private  func handleTap(_ sender: UITapGestureRecognizer? = nil) {
@@ -142,7 +170,9 @@ public class TabBarItem: UIView {
         case .translateUp:
             self.isTranslatedUp = true
         }
-        self.delegate?.tabBarItem(self, didSelectTag: tag)
+        if self.delegateMute == false {
+            self.delegate?.tabBarItem(self, didSelectTag: tag)
+        }
     }
     
     private func resizeImageViewIfLabelIsEmpty() {

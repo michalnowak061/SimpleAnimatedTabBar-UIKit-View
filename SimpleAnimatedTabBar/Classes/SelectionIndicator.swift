@@ -26,6 +26,7 @@ enum SelectionIndicatorAnimationType: Int, CaseIterable {
 
 class SelectionIndicator: UIView {
     // MARK: -- Private variable's
+    private var view: UIView = UIView()
     
     // MARK: -- Public variable's
     public var indicatorBackgroundColor: UIColor = .blue
@@ -36,72 +37,72 @@ class SelectionIndicator: UIView {
     
     public var animationType: SelectionIndicatorAnimationType = .translation
     
-    public var centerPoint: CGPoint?
+    public var size: CGSize! {
+        didSet {
+            self.didMoveToSuperview()
+        }
+    }
     
     public var actualIndex: Int = 0
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        if self.type == .circle || self.type == .downDot || self.type == .upDot {
+            self.view.cornerRadius = self.view.frame.height / 2.0
+        }
+    }
+    
     // MARK: -- Public function's
     override func didMoveToSuperview() {
+        view.backgroundColor = self.indicatorBackgroundColor
+        self.view.removeFromSuperview()
+        self.addSubview(view)
+        
         switch self.type {
         case .none:
             self.isHidden = true
         case .rectangle:
-            let frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
-            let rectangle = UIView(frame: frame)
-            rectangle.backgroundColor = self.indicatorBackgroundColor
-            rectangle.cornerRadius = self.cornerRadius
-            rectangle.center = self.centerPoint ?? CGPoint(x: 0, y: 0)
-            self.addSubview(rectangle)
+            view.snp.makeConstraints { make in
+                make.width.equalToSuperview()
+                make.height.equalToSuperview()
+            }
+            view.cornerRadius = self.cornerRadius
         case .square:
-            let frame = CGRect(x: 0, y: 0, width: self.frame.height, height: self.frame.height)
-            let square = UIView(frame: frame)
-            square.backgroundColor = self.indicatorBackgroundColor
-            square.cornerRadius = self.cornerRadius
-            square.center = self.centerPoint ?? CGPoint(x: 0, y: 0)
-            self.addSubview(square)
+            view.snp.makeConstraints { make in
+                make.width.height.equalTo(self.snp.height)
+                make.center.equalTo(self.snp.center)
+            }
+            view.cornerRadius = self.cornerRadius
         case .circle:
-            let frame = CGRect(x: 0, y: 0, width: self.frame.height, height: self.frame.height)
-            let circle = UIView(frame: frame)
-            circle.backgroundColor = self.indicatorBackgroundColor
-            circle.layer.cornerRadius = circle.frame.width / 2
-            circle.center = self.centerPoint ?? CGPoint(x: 0, y: 0)
-            self.addSubview(circle)
+            view.snp.makeConstraints { make in
+                make.width.height.equalTo(self.snp.height)
+                make.center.equalTo(self.snp.center)
+            }
         case .downLine:
-            let frame = CGRect(x: 0, y: 0.9 * self.frame.height, width: self.frame.width, height: self.frame.height * 0.1)
-            let line = UIView(frame: frame)
-            line.backgroundColor = self.indicatorBackgroundColor
-            line.cornerRadius = self.cornerRadius
-            self.addSubview(line)
+            view.snp.makeConstraints { make in
+                make.bottom.equalToSuperview()
+                make.width.equalTo(self.snp.width)
+                make.height.equalTo(self.snp.height).multipliedBy(0.1)
+            }
         case .upLine:
-            let frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height * 0.1)
-            let line = UIView(frame: frame)
-            line.backgroundColor = self.indicatorBackgroundColor
-            line.cornerRadius = self.cornerRadius
-            self.addSubview(line)
+            view.snp.makeConstraints { make in
+                make.top.equalToSuperview()
+                make.width.equalTo(self.snp.width)
+                make.height.equalTo(self.snp.height).multipliedBy(0.1)
+            }
         case .downDot:
-            let width = self.frame.height / 10
-            let height = self.frame.height / 10
-            let frame = CGRect(x: 0,
-                               y: self.frame.maxY - height - (height * 0.4),
-                               width: width,
-                               height: height)
-            let dot = UIView(frame: frame)
-            dot.backgroundColor = self.indicatorBackgroundColor
-            dot.layer.cornerRadius = dot.frame.width / 2
-            dot.center.x = self.centerPoint?.x ?? 0
-            self.addSubview(dot)
+            view.snp.makeConstraints { make in
+                make.bottom.equalToSuperview().offset(-(self.size?.height ?? 0) * 0.04)
+                make.width.height.equalTo(self.snp.height).multipliedBy(0.1)
+                make.centerX.equalTo(self.snp.centerX)
+            }
         case .upDot:
-            let width = self.frame.height / 10
-            let height = self.frame.height / 10
-            let frame = CGRect(x: 0,
-                               y: self.frame.minY + (height * 0.4),
-                               width: width,
-                               height: height)
-            let dot = UIView(frame: frame)
-            dot.backgroundColor = self.indicatorBackgroundColor
-            dot.layer.cornerRadius = dot.frame.width / 2
-            dot.center.x = self.centerPoint?.x ?? 0
-            self.addSubview(dot)
+            view.snp.makeConstraints { make in
+                make.top.equalToSuperview().offset((self.size?.height ?? 0) * 0.04)
+                make.width.height.equalTo(self.snp.height).multipliedBy(0.1)
+                make.centerX.equalTo(self.snp.centerX)
+            }
         }
     }
     

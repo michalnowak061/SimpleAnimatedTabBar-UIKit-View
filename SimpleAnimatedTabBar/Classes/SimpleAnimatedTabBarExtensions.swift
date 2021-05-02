@@ -11,6 +11,7 @@ extension SimpleAnimatedTabBar: TabBarItemDelegate {
     public func tabBarItem(_ tabBarItem: TabBarItem, didSelectTag tag: Int) {
         DispatchQueue.main.async {
             self.selectTabBarItem(at: tag)
+            self.delegate?.simpleAnimatedTabBar(self, didSelectItemAt: tag)
         }
     }
     
