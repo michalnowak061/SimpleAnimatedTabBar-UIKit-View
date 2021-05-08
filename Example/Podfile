@@ -4,9 +4,4 @@ platform :ios, '13.0'
 
 target 'SimpleAnimatedTabBar_Example' do
   pod 'SimpleAnimatedTabBar', :path => '../'
-
-  target 'SimpleAnimatedTabBar_Tests' do
-    inherit! :search_paths
-
-  end
 end

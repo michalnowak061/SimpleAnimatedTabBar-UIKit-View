@@ -1,23 +1,16 @@
 PODS:
-  - SimpleAnimatedTabBar (0.1.2):
-    - SnapKit (~> 5.0.0)
-  - SnapKit (5.0.1)
+  - SimpleAnimatedTabBar (0.1.2)
 
 DEPENDENCIES:
   - SimpleAnimatedTabBar (from `../`)
-
-SPEC REPOS:
-  trunk:
-    - SnapKit
 
 EXTERNAL SOURCES:
   SimpleAnimatedTabBar:
     :path: "../"
 
 SPEC CHECKSUMS:
-  SimpleAnimatedTabBar: 7303e6f2e8ef8efc3e1e38e5e1cdeeaeaef543e9
-  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SimpleAnimatedTabBar: 5b6f46c3549926916697f9a862f9699a6021ffae
 
-PODFILE CHECKSUM: e124647f1ab449505228f38aa282a756907f7b28
+PODFILE CHECKSUM: 64f07f0aba4f2193c659e32296e18d25ef03c6b7
 
 COCOAPODS: 1.10.1

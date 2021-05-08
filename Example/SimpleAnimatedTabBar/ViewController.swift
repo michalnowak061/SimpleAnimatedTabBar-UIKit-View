@@ -59,8 +59,11 @@ extension ViewController: SimpleAnimatedTabBarDelegate {
         self.actualView?.removeFromSuperview()
         self.actualView = self.viewControllers[index].view
         self.view.insertSubview(self.actualView!, at: 0)
-        self.actualView?.snp.makeConstraints{ make in
-            make.width.height.equalToSuperview()
-        }
+        
+        let constraints = [
+            self.actualView!.widthAnchor.constraint(equalTo: self.view.widthAnchor),
+            self.actualView!.heightAnchor.constraint(equalTo: self.view.heightAnchor)
+        ]
+        NSLayoutConstraint.activate(constraints)
     }
 }

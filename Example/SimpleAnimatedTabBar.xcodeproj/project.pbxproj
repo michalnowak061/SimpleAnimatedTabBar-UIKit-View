@@ -12,6 +12,7 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
+		7536D2649138114D47D3E41E /* Pods_SimpleAnimatedTabBar_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7866501B0061849A5645D61 /* Pods_SimpleAnimatedTabBar_Example.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		863C9E963E1A1517E8114EA2 /* SimpleAnimatedTabBar.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SimpleAnimatedTabBar.podspec; path = ../SimpleAnimatedTabBar.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		ABBAD0012CD37E0872DBC906 /* Pods-SimpleAnimatedTabBar_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleAnimatedTabBar_Example.release.xcconfig"; path = "Target Support Files/Pods-SimpleAnimatedTabBar_Example/Pods-SimpleAnimatedTabBar_Example.release.xcconfig"; sourceTree = "<group>"; };
+		D7866501B0061849A5645D61 /* Pods_SimpleAnimatedTabBar_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleAnimatedTabBar_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F18E26F606073C89C026F012 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -34,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7536D2649138114D47D3E41E /* Pods_SimpleAnimatedTabBar_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +97,7 @@
 		A1E01E92D1DD2397D90003B3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D7866501B0061849A5645D61 /* Pods_SimpleAnimatedTabBar_Example.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -208,12 +212,10 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SimpleAnimatedTabBar_Example/Pods-SimpleAnimatedTabBar_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SimpleAnimatedTabBar/SimpleAnimatedTabBar.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SimpleAnimatedTabBar.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
