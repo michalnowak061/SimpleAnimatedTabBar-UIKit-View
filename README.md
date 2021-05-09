@@ -39,6 +39,11 @@
   <img src="Assets/TabBarItem/tabBarItemClickAnimationType/3.gif" {:height="12%" width="12%"} />
 </p>
 
+## Auto layout support
+<p align="center"> 
+  <img src="Assets/autoLayoutSupport.gif" {:height="12%" width="12%"} />
+</p>
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
