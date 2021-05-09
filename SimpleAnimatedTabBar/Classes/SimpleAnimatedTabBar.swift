@@ -6,7 +6,8 @@
 //
 
 import UIKit
-import SnapKit
+
+private let stackViewSizeScaleFactor: CGFloat = 0.9
 
 @IBDesignable public class SimpleAnimatedTabBar: UIView, InstanceCountable {
     // MARK: -- Public variable's
@@ -44,7 +45,7 @@ import SnapKit
     }
 
     // MARK: -- Private variable's
-    private var isPrepareForInterfaceBuilder: Bool = true
+    private var isPrepareForInterfaceBuilder: Bool = false
     
     private var firstSelection: Bool = true
     
@@ -68,12 +69,24 @@ import SnapKit
     
     private var subviewForTranslateUpIsHidden = true
     
+    private var stackViewSpacing: CGFloat {
+        get {
+            let spacing = self.stackView.spacing > 0 ? self.stackViewSpacing : 1
+            return spacing
+        }
+        set(newValue) {
+            if newValue < 1 {
+                self.stackViewSpacing = 1
+            }
+        }
+    }
+    
     // MARK: -- Private IBInspectable's
-    @IBInspectable private var numberOfItems: Int = 0 {
+    @IBInspectable var numberOfItems: Int = 4 {
         didSet {
             self.tabBarItems.removeAll()
             
-            for index in 0 ..< self.numberOfItems {
+            for index in 0 ..< numberOfItems {
                 let tabBarItem = TabBarItem()
                 tabBarItem.delegate = self
                 tabBarItem.tag = index
@@ -83,32 +96,20 @@ import SnapKit
             }
         }
     }
-    
-    @IBInspectable private var tabBarBackgroundColor: UIColor = .systemBlue {
+        
+    @IBInspectable private var tabBarBackgroundColor: UIColor? {
         didSet {
             self.tabBarView.backgroundColor = tabBarBackgroundColor
         }
     }
-        
-    @IBInspectable private var tabBarCornerRadius: CGFloat = 0 {
-        didSet {
-            self.tabBarView.cornerRadius = tabBarCornerRadius
-        }
-    }
     
-    @IBInspectable private var stackViewBackgroundColor: UIColor = .systemPink {
+    @IBInspectable private var stackViewBackgroundColor: UIColor = .clear {
         didSet {
             self.stackView.backgroundColor = stackViewBackgroundColor
         }
     }
     
-    @IBInspectable private var stackViewSpacing: CGFloat = 10 {
-        didSet {
-            self.stackView.spacing = stackViewSpacing
-        }
-    }
-    
-    @IBInspectable private var tabBarItemBackgroundColor: UIColor = .systemTeal {
+    @IBInspectable private var tabBarItemBackgroundColor: UIColor = .clear {
         didSet {
             _ = self.tabBarItems.map {
                 $0.backgroundColor = tabBarItemBackgroundColor
@@ -116,7 +117,7 @@ import SnapKit
         }
     }
     
-    @IBInspectable private var tabBarItemCornerRadius: CGFloat = 0 {
+    @IBInspectable private var tabBarItemCornerRadius: CGFloat = 0.0 {
         didSet {
             _ = self.tabBarItems.map {
                 $0.cornerRadius = tabBarItemCornerRadius
@@ -124,7 +125,7 @@ import SnapKit
         }
     }
     
-    @IBInspectable private var tabBarItemClickAnimationType: Int = TabBarItemClickAnimationType.rotation.rawValue {
+    @IBInspectable private var tabBarItemClickAnimationType: Int =  TabBarItemClickAnimationType.none.rawValue {
         didSet {
             _ = self.tabBarItems.map {
                 $0.clickAnimationType = TabBarItemClickAnimationType(rawValue: self.tabBarItemClickAnimationType) ?? TabBarItemClickAnimationType.rotation
@@ -140,7 +141,7 @@ import SnapKit
         }
     }
     
-    @IBInspectable private var selectionIndicatorType: Int = SelectionIndicatorType.rectangle.rawValue {
+    @IBInspectable private var selectionIndicatorType: Int = SelectionIndicatorType.downLine.rawValue {
         didSet {
             self.selectionIndicator.type = SelectionIndicatorType(rawValue: self.selectionIndicatorType) ?? SelectionIndicatorType.none
         }
@@ -152,13 +153,13 @@ import SnapKit
         }
     }
     
-    @IBInspectable private var selectionIndicatorBackgroundColor: UIColor = .cyan {
+    @IBInspectable private var selectionIndicatorBackgroundColor: UIColor = .clear {
         didSet {
             self.selectionIndicator.indicatorBackgroundColor = self.selectionIndicatorBackgroundColor
         }
     }
     
-    @IBInspectable private var selectionIndicatorAlpha: CGFloat = 0.5 {
+    @IBInspectable private var selectionIndicatorAlpha: CGFloat = 1.0 {
         didSet {
             self.selectionIndicator.alpha = self.selectionIndicatorAlpha
         }
@@ -170,7 +171,7 @@ import SnapKit
         }
     }
     
-    @IBInspectable private var selectionIndicatorCornerRadius: CGFloat = 0 {
+    @IBInspectable private var selectionIndicatorCornerRadius: CGFloat = 0.0 {
         didSet {
             self.selectionIndicator.cornerRadius = self.selectionIndicatorCornerRadius
         }
@@ -179,10 +180,15 @@ import SnapKit
     // MARK: -- Private function's
     private func setupTabBarView() {        
         self.addSubview(self.tabBarView)
-        self.tabBarView.snp.makeConstraints { make in
-            make.width.height.equalToSuperview()
-            make.center.equalToSuperview()
-        }
+        self.tabBarView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let constraints = [
+            self.tabBarView.widthAnchor.constraint(equalTo: self.widthAnchor),
+            self.tabBarView.heightAnchor.constraint(equalTo: self.heightAnchor),
+            self.tabBarView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            self.tabBarView.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+        ]
+        NSLayoutConstraint.activate(constraints)
     }
     
     private func setupHorizontalStackView() {
@@ -192,11 +198,15 @@ import SnapKit
         
         self.stackView.removeFromSuperview()
         self.addSubview(self.stackView)
-        self.stackView.snp.makeConstraints { make in
-            make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.equalToSuperview()
-            make.center.equalToSuperview()
-        }
+        self.stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let constraints = [
+            self.stackView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: stackViewSizeScaleFactor),
+            self.stackView.heightAnchor.constraint(equalTo: self.heightAnchor),
+            self.stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            self.stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+        ]
+        NSLayoutConstraint.activate(constraints)
     }
     
     private func setupTabBarItems() {
@@ -209,9 +219,8 @@ import SnapKit
             let tabBarItemSize = self.tabBarItemSize
             
             tabBarItem.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: tabBarItemSize)
-            
             tabBarItem.image = UIImage(systemName: "square.fill") ?? UIImage()
-            //tabBarItem.name = "item"
+            tabBarItem.name = "item"
             
             self.delegate?.imageAndlabelForItem(self, item: tabBarItem, atIndex: index)
         }
@@ -220,27 +229,31 @@ import SnapKit
     private func setupSelectionIndicator() {
         self.selectionIndicator.removeFromSuperview()
         self.insertSubview(self.selectionIndicator, at: 1)
-        self.selectionIndicator.snp.removeConstraints()
-        self.selectionIndicator.snp.makeConstraints { make in
-            make.width.equalTo(self.tabBarItems[0].snp.width)
-            make.height.equalToSuperview()
-            make.center.equalTo(self.tabBarItems[0].snp.center)
-        }
-        
         self.selectionIndicator.size = CGSize(width: self.tabBarItemSize.width, height: self.frame.height)
+        self.selectionIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        let constraints = [
+            self.selectionIndicator.widthAnchor.constraint(equalTo: self.tabBarItems[0].widthAnchor),
+            self.selectionIndicator.heightAnchor.constraint(equalTo: self.heightAnchor),
+            self.selectionIndicator.centerXAnchor.constraint(equalTo: self.tabBarItems[0].centerXAnchor),
+            self.selectionIndicator.centerYAnchor.constraint(equalTo: self.tabBarItems[0].centerYAnchor)
+        ]
+        NSLayoutConstraint.activate(constraints)
     }
     
     private func setupSubviewForTranslateUp(atIndex index: Int) {
         self.subviewForTranslateUp.removeFromSuperview()
         self.insertSubview(self.subviewForTranslateUp, at: 0)
-        self.subviewForTranslateUp.snp.removeConstraints()
-        self.subviewForTranslateUp.snp.makeConstraints { make in
-            make.width.equalTo(self.stackView.arrangedSubviews[index].snp.height)
-            make.height.equalTo(self.stackView.arrangedSubviews[index].snp.height)
-            make.center.equalTo(self.stackView.arrangedSubviews[index].snp.center)
-        }
-        
         self.subviewForTranslateUp.backgroundColor = self.tabBarView.backgroundColor
+        self.subviewForTranslateUp.translatesAutoresizingMaskIntoConstraints = false
+    
+        let constraints = [
+            self.subviewForTranslateUp.widthAnchor.constraint(equalTo: self.stackView.arrangedSubviews[index].heightAnchor),
+            self.subviewForTranslateUp.heightAnchor.constraint(equalTo: self.stackView.arrangedSubviews[index].heightAnchor),
+            self.subviewForTranslateUp.centerXAnchor.constraint(equalTo: self.stackView.arrangedSubviews[index].centerXAnchor),
+            self.subviewForTranslateUp.centerYAnchor.constraint(equalTo: self.stackView.arrangedSubviews[index].centerYAnchor)
+        ]
+        NSLayoutConstraint.activate(constraints)
     }
     
     private func setupViews() {
@@ -250,15 +263,40 @@ import SnapKit
         self.setupSelectionIndicator()
     }
     
+    private func releaseAllTabBarItems() {
+        _ = self.tabBarItems.map {
+            $0.isTranslatedUp = false
+        }
+    }
+    
+    private func releaseTabBarItems(withoutTag: Int) {
+        _ = self.tabBarItems.map {
+            if $0.tag != withoutTag {
+                $0.isTranslatedUp = false
+            }
+        }
+    }
+    
+    private func select(at index: Int) {
+        guard index < self.tabBarItems.count else {
+            return
+        }
+        self.tabBarItems[index].select(atIndex: index)
+    }
+    
     // MARK: -- Public function's
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
         SimpleAnimatedTabBar.instanceCounter += 1
+        
+        super.init(coder: aDecoder)
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+    }
+    
+    override public func prepareForInterfaceBuilder() {
+        self.isPrepareForInterfaceBuilder = true
     }
     
     deinit {
@@ -267,33 +305,11 @@ import SnapKit
     
     public override func draw(_ rect: CGRect) {
         super.draw(rect)
-    
-        if isPrepareForInterfaceBuilder {
-            self.setupViews()
-        }
         
-        isPrepareForInterfaceBuilder = false
-    }
-    
-    public func releaseAllTabBarItems() {
-        _ = self.tabBarItems.map {
-            $0.isTranslatedUp = false
-        }
-    }
-    
-    public func releaseTabBarItems(withoutTag: Int) {
-        _ = self.tabBarItems.map {
-            if $0.tag != withoutTag {
-                $0.isTranslatedUp = false
-            }
-        }
-    }
-    
-    public func select(at index: Int) {
-        guard index < self.tabBarItems.count else {
-            return
-        }
-        self.tabBarItems[index].select(atIndex: index)
+        if self.numberOfItems == 0 { self.numberOfItems = 4 }
+        if self.tabBarBackgroundColor == nil { self.tabBarBackgroundColor = #colorLiteral(red: 0.5349039663, green: 0.8391603913, blue: 1, alpha: 1) }
+        
+        self.setupViews()
     }
     
     public func selectTabBarItem(at index: Int) {

@@ -24,16 +24,20 @@ enum SelectionIndicatorAnimationType: Int, CaseIterable {
     case blink
 }
 
+private let lineSizeScaleFactor: CGFloat = 0.08
+
+private let dotSizeScaleFactor: CGFloat = 0.08
+
 class SelectionIndicator: UIView {
     // MARK: -- Private variable's
     private var view: UIView = UIView()
     
     // MARK: -- Public variable's
-    public var indicatorBackgroundColor: UIColor = .blue
+    public var indicatorBackgroundColor: UIColor = .systemBlue
     
     public var animationDuration: TimeInterval = 0.3
     
-    public var type: SelectionIndicatorType = .square
+    public var type: SelectionIndicatorType = .downLine
     
     public var animationType: SelectionIndicatorAnimationType = .translation
     
@@ -55,54 +59,70 @@ class SelectionIndicator: UIView {
     
     // MARK: -- Public function's
     override func didMoveToSuperview() {
-        view.backgroundColor = self.indicatorBackgroundColor
         self.view.removeFromSuperview()
         self.addSubview(view)
+        self.view.backgroundColor = self.indicatorBackgroundColor
+        self.view.translatesAutoresizingMaskIntoConstraints = false
         
         switch self.type {
         case .none:
             self.isHidden = true
         case .rectangle:
-            view.snp.makeConstraints { make in
-                make.width.equalToSuperview()
-                make.height.equalToSuperview()
-            }
             view.cornerRadius = self.cornerRadius
+            
+            let constraints = [
+                self.view.widthAnchor.constraint(equalTo: self.widthAnchor),
+                self.view.heightAnchor.constraint(equalTo: self.heightAnchor)
+            ]
+            NSLayoutConstraint.activate(constraints)
         case .square:
-            view.snp.makeConstraints { make in
-                make.width.height.equalTo(self.snp.height)
-                make.center.equalTo(self.snp.center)
-            }
             view.cornerRadius = self.cornerRadius
+            
+            let constraints = [
+                self.view.widthAnchor.constraint(equalTo: self.heightAnchor),
+                self.view.heightAnchor.constraint(equalTo: self.heightAnchor),
+                self.view.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                self.view.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+            ]
+            NSLayoutConstraint.activate(constraints)
         case .circle:
-            view.snp.makeConstraints { make in
-                make.width.height.equalTo(self.snp.height)
-                make.center.equalTo(self.snp.center)
-            }
+            let constraints = [
+                self.view.widthAnchor.constraint(equalTo: self.heightAnchor),
+                self.view.heightAnchor.constraint(equalTo: self.heightAnchor),
+                self.view.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                self.view.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+            ]
+            NSLayoutConstraint.activate(constraints)
         case .downLine:
-            view.snp.makeConstraints { make in
-                make.bottom.equalToSuperview()
-                make.width.equalTo(self.snp.width)
-                make.height.equalTo(self.snp.height).multipliedBy(0.1)
-            }
+            let constraints = [
+                self.view.widthAnchor.constraint(equalTo: self.widthAnchor),
+                self.view.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: lineSizeScaleFactor),
+                self.view.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            ]
+            NSLayoutConstraint.activate(constraints)
         case .upLine:
-            view.snp.makeConstraints { make in
-                make.top.equalToSuperview()
-                make.width.equalTo(self.snp.width)
-                make.height.equalTo(self.snp.height).multipliedBy(0.1)
-            }
+            let constraints = [
+                self.view.widthAnchor.constraint(equalTo: self.widthAnchor),
+                self.view.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: lineSizeScaleFactor),
+                self.view.topAnchor.constraint(equalTo: self.topAnchor)
+            ]
+            NSLayoutConstraint.activate(constraints)
         case .downDot:
-            view.snp.makeConstraints { make in
-                make.bottom.equalToSuperview().offset(-(self.size?.height ?? 0) * 0.04)
-                make.width.height.equalTo(self.snp.height).multipliedBy(0.1)
-                make.centerX.equalTo(self.snp.centerX)
-            }
+            let constraints = [
+                self.view.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: dotSizeScaleFactor),
+                self.view.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: dotSizeScaleFactor),
+                self.view.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                self.view.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -(self.size?.height ?? 0) * 0.04)
+            ]
+            NSLayoutConstraint.activate(constraints)
         case .upDot:
-            view.snp.makeConstraints { make in
-                make.top.equalToSuperview().offset((self.size?.height ?? 0) * 0.04)
-                make.width.height.equalTo(self.snp.height).multipliedBy(0.1)
-                make.centerX.equalTo(self.snp.centerX)
-            }
+            let constraints = [
+                self.view.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: dotSizeScaleFactor),
+                self.view.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: dotSizeScaleFactor),
+                self.view.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                self.view.topAnchor.constraint(equalTo: self.topAnchor, constant: (self.size?.height ?? 0) * 0.04)
+            ]
+            NSLayoutConstraint.activate(constraints)
         }
     }
     

@@ -14,10 +14,15 @@ public enum TabBarItemClickAnimationType: Int {
     case translateUp    = 3
 }
 
+private let viewSizeScaleFactor: CGFloat = 0.6
+
+private let imageSizeScaleFactor: CGFloat = 0.7
+
+private let labelSizeScaleFactor: CGFloat = 0.3
+
+private let labelFontSizeScaleFactor: CGFloat = 0.15
+
 public class TabBarItem: UIView {
-    // MARK: -- Private parameter's
-    private let labelFontSizeScaleFactor: CGFloat = 0.15
-    
     // MARK: -- Private variable's
     private var isPrepareForInterfaceBuilder: Bool = true
     
@@ -32,7 +37,7 @@ public class TabBarItem: UIView {
     // MARK: -- Public variable's
     public weak var delegate: TabBarItemDelegate?
     
-    public var clickAnimationType: TabBarItemClickAnimationType = .rotation
+    public var clickAnimationType: TabBarItemClickAnimationType = .none
     
     public var animationDuration: TimeInterval = 0.3
     
@@ -44,7 +49,7 @@ public class TabBarItem: UIView {
     
     public var isTranslatedUp: Bool = false {
         didSet(newValue) {
-            if newValue != self.isTranslatedUp {
+            if newValue != self.isTranslatedUp && self.clickAnimationType == .translateUp {
                 switch isTranslatedUp {
                 case true:
                     self.translateUpAnimation()
@@ -76,7 +81,7 @@ public class TabBarItem: UIView {
     
     override public var bounds: CGRect {
         didSet {
-            let fontSize = self.frame.height * self.labelFontSizeScaleFactor
+            let fontSize = self.frame.height * labelFontSizeScaleFactor
             self.label.font = self.label.font.withSize(fontSize)
         }
     }
@@ -93,21 +98,13 @@ public class TabBarItem: UIView {
         self.addGestureRecognizer(tap)
     }
     
-    public override func prepareForInterfaceBuilder() {
-        isPrepareForInterfaceBuilder = true
-    }
-    
     deinit {
     }
     
     public override func draw(_ rect: CGRect) {
         super.draw(rect)
         
-        if isPrepareForInterfaceBuilder {
-            self.setupViews()
-        }
-        
-        isPrepareForInterfaceBuilder = false
+        self.setupViews()
     }
     
     public func select(atIndex index: Int, delegateMute: Bool = false) {
@@ -118,16 +115,19 @@ public class TabBarItem: UIView {
     // MARK: -- Private function's
     private func setupViews() {
         self.setupView()
-        self.resizeImageViewIfLabelIsEmpty()
     }
     
     private func setupView() {
         self.addSubview(self.view)
-        self.view.snp.makeConstraints { make in
-            make.width.equalToSuperview()
-            make.height.equalToSuperview().multipliedBy(0.6)
-            make.center.equalToSuperview()
-        }
+        self.view.translatesAutoresizingMaskIntoConstraints = false
+        
+        let constraints = [
+            self.view.widthAnchor.constraint(equalTo: self.widthAnchor),
+            self.view.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: viewSizeScaleFactor),
+            self.view.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            self.view.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+        ]
+        NSLayoutConstraint.activate(constraints)
         
         self.setupImageView()
         self.setupLabel()
@@ -135,28 +135,35 @@ public class TabBarItem: UIView {
     
     private func setupImageView() {
         self.imageView.contentMode = .scaleAspectFit
-        
         self.view.addSubview(self.imageView)
-        self.imageView.snp.makeConstraints { make in
-            make.height.equalToSuperview().multipliedBy(0.8)
-            make.width.equalToSuperview()
-            make.top.equalToSuperview()
-            make.centerX.equalToSuperview()
-        }
+        self.imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let sizeScaleFactor: CGFloat = self.label.text?.isEmpty == true ? 1.0 : imageSizeScaleFactor
+        
+        let constraints = [
+            self.imageView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
+            self.imageView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: sizeScaleFactor),
+            self.imageView.topAnchor.constraint(equalTo: self.view.topAnchor)
+        ]
+        NSLayoutConstraint.activate(constraints)
     }
     
     private func setupLabel() {
-        let fontSize = self.frame.height * self.labelFontSizeScaleFactor
+        let fontSize = self.view.frame.height * labelFontSizeScaleFactor
         self.label.font = self.label.font.withSize(fontSize)
         self.label.textAlignment = .center
         self.label.textColor = self.tintColor
         
         self.view.addSubview(self.label)
-        self.label.snp.makeConstraints { make in
-            make.width.equalToSuperview()
-            make.height.equalToSuperview().multipliedBy(0.2)
-            make.top.equalTo(self.imageView.snp.bottom)
-        }
+        self.label.translatesAutoresizingMaskIntoConstraints = false
+        
+        let constraints = [
+            self.label.widthAnchor.constraint(equalTo: self.view.widthAnchor),
+            self.label.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: labelSizeScaleFactor),
+            self.label.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            self.label.topAnchor.constraint(equalTo: self.imageView.bottomAnchor)
+        ]
+        NSLayoutConstraint.activate(constraints)
     }
     
     @objc private  func handleTap(_ sender: UITapGestureRecognizer? = nil) {
@@ -172,13 +179,6 @@ public class TabBarItem: UIView {
         }
         if self.delegateMute == false {
             self.delegate?.tabBarItem(self, didSelectTag: tag)
-        }
-    }
-    
-    private func resizeImageViewIfLabelIsEmpty() {
-        if self.label.text?.isEmpty ?? true {
-            self.imageView.transform = self.imageView.transform.scaledBy(x: 1.8, y: 1.8)
-            self.imageView.center.y = self.center.y
         }
     }
     
