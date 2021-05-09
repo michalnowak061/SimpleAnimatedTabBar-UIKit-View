@@ -1,9 +1,23 @@
-# SimpleAnimatedTabBar
+## Simple Animated Tab Bar
 
-[![CI Status](https://img.shields.io/travis/michalnowak061/SimpleAnimatedTabBar.svg?style=flat)](https://travis-ci.org/michalnowak061/SimpleAnimatedTabBar)
-[![Version](https://img.shields.io/cocoapods/v/SimpleAnimatedTabBar.svg?style=flat)](https://cocoapods.org/pods/SimpleAnimatedTabBar)
-[![License](https://img.shields.io/cocoapods/l/SimpleAnimatedTabBar.svg?style=flat)](https://cocoapods.org/pods/SimpleAnimatedTabBar)
-[![Platform](https://img.shields.io/cocoapods/p/SimpleAnimatedTabBar.svg?style=flat)](https://cocoapods.org/pods/SimpleAnimatedTabBar)
+<p align="left"> 
+  <img src="https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat" >
+  <img src="https://img.shields.io/badge/iOS-13.0+-blue.svg?style=flat" > 
+  <img src="https://img.shields.io/badge/CocoaPods-support-red.svg?style=flat" >
+  <img src="https://img.shields.io/badge/Storyboards-support-yellow.svg?style=flat" >
+</p>
+
+## Table of contents
+* [General info](#general-info)
+* [Selection indicator types](#selection-indicator-types)
+* [Tab bar item click animation types](#tab-bar-item-click-animation-types)
+* [Auto layout support](#auto-layout-support)
+* [Installation](#installation)
+* [License](#license)
+* [Contact](#contact)
+
+## General info
+This is simple animated tab bar component. This is UIView subclass and support Storyboard.
 
 ## Selection indicator types
 
@@ -44,25 +58,19 @@
   <img src="Assets/autoLayoutSupport.gif" {:height="12%" width="12%"} />
 </p>
 
-## Example
-
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
-## Requirements
-
 ## Installation
 
 SimpleAnimatedTabBar is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'SimpleAnimatedTabBar'
+pod 'SimpleAnimatedTabBar', '~> 0.1.3'
 ```
-
-## Author
-
-michalnowak061, michal.nowak061@gmail.com
 
 ## License
 
 SimpleAnimatedTabBar is available under the MIT license. See the LICENSE file for more info.
+
+## Contact
+<a href="https://www.linkedin.com/in/michał-nowak-53075a17a/"> <img src="https://i.imgur.com/Ba61VxB.png" width="50" height="50" /> </a>
+<a href="https://twitter.com/mnowak061"> <img src="https://imgur.com/ocbAQn7.png" width="50" height="50" /> </a>
