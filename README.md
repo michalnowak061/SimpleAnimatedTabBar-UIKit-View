@@ -17,7 +17,7 @@
 * [Contact](#contact)
 
 ## General info
-This is simple animated tab bar component. This is UIView subclass and support Storyboard.
+Simple animated tab bar (UIView subclass) with @IBInspectable parameters. Contains: animated click on tab bar item, different selection indicator types, storyboards compatibility and autolayout.
 
 ## Selection indicator types
 
